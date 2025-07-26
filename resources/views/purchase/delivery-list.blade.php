@@ -90,7 +90,7 @@
                             <p class="mb-0">No items in your cart.</p>
                         </div>
                     @endif
-                    <a href="{{url('/purchase-order-cancel/'.$order->chalan_reg)}}" onclick="return confirm('Are you sure you want to cancel this order?')"><button type="button" class="btn btn-warning w-100"><span id="btnText"><h4 class="m-0">Delivery Complete</h4></span></button></a>
+                    <a href="{{url('/purchase-order-confirm/'.$order->chalan_reg)}}" onclick="return confirm('Are you sure you want to confirm this order?')"><button type="button" class="btn btn-warning w-100"><span id="btnText"><h4 class="m-0">Delivery Complete</h4></span></button></a>
                 </div>
             </div>
         </div>

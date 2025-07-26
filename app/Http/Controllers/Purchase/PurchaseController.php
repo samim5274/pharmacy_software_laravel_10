@@ -10,6 +10,7 @@ use Auth;
 use App\Models\Purchasecart;
 use App\Models\Purchaseorder;
 use App\Models\Product;
+use App\Models\Stock;
 
 class PurchaseController extends Controller
 {
@@ -152,7 +153,7 @@ class PurchaseController extends Controller
                 $order->due = $dueAmount;
             }
             
-            $order->status = 1; // ['1 = order', '2 = delivery', '3 = cancelled']
+            $order->status = 1; // ['1 = order', '2 = delivery', '3 = cancelled', '3 = bill payment']
             
             $order->save();
             return redirect()->back()->with('success', 'Order sale successfully.')->with('reg', $reg);
@@ -216,7 +217,145 @@ class PurchaseController extends Controller
             return redirect()->back()->with('error', 'Item not found. Please try again. Thank You!');
         }
         $cart->delivery_qty = $qty;
+
+        $stock = new Stock();
+        $stock->medicine_id = $medicine;
+        $stock->stockIn = $qty;
+        $stock->stockOut = 0;
+        $stock->date = Carbon::now()->format('Y-m-d');
+        $stock->reg = $reg;
+        $stock->remark = 'Purchase';
+
+        $product = Product::where('id', $medicine)->first();
+        $product->stock += $qty;
+
+        $product->update();
         $cart->update();
+        $stock->save();
         return redirect()->back()->with('success','Delivery qty updated successfully.');
+    }
+
+    public function deliveryComplete($reg){
+        $order = Purchaseorder::where('chalan_reg', $reg)->first();
+        if(!$order){
+            return redirect()->back()->with('error', 'Item not found. Please try again. Thank You!');
+        }
+        $order->status = 2;
+        $order->delivary_date = Carbon::now()->format('Y-m-d');
+        // dd($order);
+        $order->update();
+        return redirect()->route('purchase.order.list')->with('success','Delivery completed successfully.');
+    }
+
+    public function completeOrder(){
+        $order = Purchaseorder::where('status', 2)->paginate(20);
+        $total = Purchaseorder::where('status', 2)->sum('total');
+        $discount = Purchaseorder::where('status', 2)->sum('discount');
+        $payable = Purchaseorder::where('status', 2)->sum('payable');
+        $pay = Purchaseorder::where('status', 2)->sum('pay');
+        $due = Purchaseorder::where('status', 2)->sum('due');
+        $vat = Purchaseorder::where('status', 2)->sum('vat');
+        return view('purchase.complete-order', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function payBill($reg){
+        $order = Purchaseorder::where('chalan_reg', $reg)->first();
+        $cart = Purchasecart::where('chalan_reg', $reg)->get();
+        $count = Purchasecart::where('chalan_reg', $reg)->count();
+        // dd($order);
+        return view('purchase.bill-pay', compact('reg','cart','order','count'));
+    }
+
+    public function billPay(Request $request){
+        try{
+
+            $request->validate([
+                'txtReg' => 'required',
+                'txtSubTotal' => 'required',
+            ]);
+
+            $reg = $request->input('txtReg', '');
+
+            $order = Purchaseorder::where('chalan_reg', $reg)->first();
+
+            if(!$order) {
+                return redirect()->back()->with('error', 'This order already taken. Please add product to cart and try again. Thank You!');
+            } 
+
+            if($request->input('txtSubTotal', '') <= 0) {
+                return redirect()->back()->with('error', 'Your cart is empty. Try again.');
+            }
+
+            $received = $request->input('txtPay', 0);
+            $total = $request->input('txtSubTotal', 0);
+            $discount = $request->input('txtDiscount', 0);
+            $vat = $request->input('txtVAT', 0);
+
+            $newVat = $total * $vat / 100;
+            $payable = ($total - $discount) + $newVat;
+            $dueAmount = $payable - $received;
+
+            if($received < 0) {
+                return redirect()->back()->with('warning', 'You must be payment some amount. Unless you can not sale this product. Thanks');
+            }
+
+            $order->order_date = Carbon::now()->format('Y-m-d');
+            $order->user_id = Auth::guard('admin')->user()->id;
+            $order->chalan_reg = $reg;
+            $order->total = $total;
+            $order->discount = $discount;
+            $order->vat = $newVat;
+            $order->payable = $payable;
+
+
+            if($received >= $payable) {
+                $order->pay = $payable;
+                $order->due = 0;
+            } else {
+                $order->pay = $received;
+                $order->due = $dueAmount;
+            }
+            
+            $order->status = 4; // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment']
+            
+            $order->update();
+            return redirect()->back()->with('success', 'Order sale successfully.')->with('reg', $reg);
+
+        } catch(Exception $e) {
+            return redirect()->back()->with('error', 'Your cart is empty. Try again.'.$e);
+        }
+    }
+
+    public function paymentList(){
+        $order = Purchaseorder::where('status', 4)->paginate(20);
+        $total = Purchaseorder::where('status', 4)->sum('total');
+        $discount = Purchaseorder::where('status', 4)->sum('discount');
+        $payable = Purchaseorder::where('status', 4)->sum('payable');
+        $pay = Purchaseorder::where('status', 4)->sum('pay');
+        $due = Purchaseorder::where('status', 4)->sum('due');
+        $vat = Purchaseorder::where('status', 4)->sum('vat');
+        return view('purchase.payment-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function duePay(Request $request){
+        $reg = $request->input('txtReg', '');
+        $received = $request->input('txtReceivedAmount', '');
+
+        $order = Purchaseorder::where('chalan_reg', $reg)->first();
+        if(!$order){
+            return redirect()->back()->with('error', 'This order not found. Please try to another and try again. Thank You!');
+        }
+
+        $due = $order->due;
+
+        if($due <= $received){
+            $order->due = 0;
+            $order->pay += $due;
+        } else {
+            $order->due -= $received;
+            $order->pay += $received;
+        }
+        $order->update();
+        return redirect()->back()->with('success', 'Order sale successfully.');
     }
 }

@@ -58,3 +58,9 @@ Route::get('/view-purchase-order/{reg}', [PurchaseController::class, 'viewPurcha
 Route::get('/purchase-order-cancel/{reg}', [PurchaseController::class, 'cancelOrder']);
 Route::get('/purchase-order-delivery/{reg}', [PurchaseController::class, 'deliveryView']);
 Route::post('/confirm-purchase-order-qty', [PurchaseController::class, 'confirmQtyOrder']);
+Route::get('/purchase-order-confirm/{reg}', [PurchaseController::class, 'deliveryComplete']);
+Route::get('/complete-purchase-order', [PurchaseController::class, 'completeOrder'])->name('complete.order.view');
+Route::get('/purchase-bill-pay/{reg}', [PurchaseController::class, 'payBill'])->name('purchase.order.bill.pay.view');
+Route::post('/purchase-pay', [PurchaseController::class, 'billPay']);
+Route::get('/payment-list', [PurchaseController::class, 'paymentList'])->name('payment.list.view');
+Route::post('/due-pay-purchase-order', [PurchaseController::class, 'duePay']);
