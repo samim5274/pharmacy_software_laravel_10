@@ -189,5 +189,14 @@
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/orderPayment.js') }}"></script>
 
+    <script>
+        @if(session('success'))
+            window.onload = function() {
+                const reg = "{{ session('reg') }}";
+                const printUrl = `{{ url('/print-specific-purchase-pay-order') }}/${reg}`;
+                window.open(printUrl, '_blank');
+            };
+        @endif
+    </script>
 </body>
 </html>

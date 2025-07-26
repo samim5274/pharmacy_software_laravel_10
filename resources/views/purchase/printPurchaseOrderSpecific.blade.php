@@ -77,9 +77,9 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $val->medicine->name }}</td>
-                <td>{{ number_format($val->price, 2) }}</td>
+                <td>{{ number_format($val->purchase_price, 2) }}</td>
                 <td>{{ $val->order_qty }}</td>
-                <td>{{ number_format($val->price * $val->order_qty, 2) }}</td>
+                <td>{{ number_format($val->purchase_price * $val->order_qty, 2) }}</td>
             </tr>
             @endforeach            
         </tbody>

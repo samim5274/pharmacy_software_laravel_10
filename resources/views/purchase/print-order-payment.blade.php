@@ -67,7 +67,8 @@
                 <th>#</th>
                 <th>Product Name</th>
                 <th>Price per Item (৳)</th>
-                <th>Quantity</th>
+                <th>Order Qty</th>
+                <th>Delivery Qty</th>
                 <th>Total (৳)</th>
             </tr>
         </thead>
@@ -76,33 +77,34 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $val->medicine->name }}</td>
-                <td>{{ number_format($val->unit_price, 2) }}</td>
-                <td>{{ $val->qty }}</td>
-                <td>{{ number_format($val->unit_price * $val->qty, 2) }}</td>
+                <td>{{ number_format($val->price, 2) }}</td>
+                <td>{{ $val->order_qty }}</td>
+                <td>{{ $val->delivery_qty }}</td>
+                <td>{{ number_format($val->purchase_price * $val->delivery_qty, 2) }}</td>
             </tr>
             @endforeach
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>Subtotal:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>Subtotal:</strong></td>
                 <td>৳{{ number_format($order->total, 2) }}</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>Discount:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>Discount:</strong></td>
                 <td>৳{{ number_format($order->discount, 2) }}</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>VAT:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>VAT:</strong></td>
                 <td>৳{{ number_format($order->vat, 2) }}</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>Total Payable:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>Total Payable:</strong></td>
                 <td>৳{{ number_format($order->payable, 2) }}</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>Paid:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>Paid:</strong></td>
                 <td>৳{{ number_format($order->pay, 2) }}</td>
             </tr>
             <tr>
-                <td colspan="4" style="text-align: right;"><strong>Due:</strong></td>
+                <td colspan="5" style="text-align: right;"><strong>Due:</strong></td>
                 <td>৳{{ number_format($order->due, 2) }}</td>
             </tr>
         </tbody>

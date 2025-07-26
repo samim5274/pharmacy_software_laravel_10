@@ -191,7 +191,7 @@
         @if(session('success'))
             window.onload = function() {
                 const reg = "{{ session('reg') }}";
-                const printUrl = `{{ url('/specific-purchase-order-print') }}/${reg}`;
+                const printUrl = `{{ url('/specific-purchase-order-print-make') }}/${reg}`;
                 window.open(printUrl, '_blank');
             };
         @endif

@@ -358,4 +358,16 @@ class PurchaseController extends Controller
         $order->update();
         return redirect()->back()->with('success', 'Order sale successfully.');
     }
+
+    public function printPaymentOrder($reg){
+        $order = Purchaseorder::where('chalan_reg', $reg)->first();
+        $cart = Purchasecart::where('chalan_reg', $reg)->get();
+        $total = Purchaseorder::where('chalan_reg', $reg)->sum('total');
+        $discount = Purchaseorder::where('chalan_reg', $reg)->sum('discount');
+        $payable = Purchaseorder::where('chalan_reg', $reg)->sum('payable');
+        $pay = Purchaseorder::where('chalan_reg', $reg)->sum('pay');
+        $due = Purchaseorder::where('chalan_reg', $reg)->sum('due');
+        $vat = Purchaseorder::where('chalan_reg', $reg)->sum('vat');
+        return view('purchase.print-order-payment', compact('cart','order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
 }

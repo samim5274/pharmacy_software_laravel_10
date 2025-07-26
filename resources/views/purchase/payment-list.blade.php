@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{$val->delivary_date}}</td>
-                                    <td><a href="{{ url('/specific-purchase-order-print/' . $val->chalan_reg) }}" target="_blank"  title="Print Invoice"> CHL-{{$val->chalan_reg}} <i class="fa-solid fa-print text-primary"></i></a></td>
+                                    <td><a href="{{ url('/specific-purchase-order-print-make/' . $val->chalan_reg) }}" target="_blank"  title="Print Invoice"> CHL-{{$val->chalan_reg}} <i class="fa-solid fa-print text-primary"></i></a></td>
                                     <td>৳{{$val->total}}/-</td>
                                     <td>৳{{$val->discount}}/-</td>
                                     <td>৳{{$val->vat}}/-</td>
@@ -61,7 +61,7 @@
                                     @endif
                                     <td class="text-center">
                                         <a href="{{url('/purchase-bill-pay/'.$val->chalan_reg)}}"><span class="badge bg-success px-2 py-2 text-white">
-                                            <i class="fa-solid fa-money-bill-1-wave"></i>
+                                            <i class="fa-solid fa-eye"></i>
                                         </span></a>
                                     </td>
                                 </tr>
