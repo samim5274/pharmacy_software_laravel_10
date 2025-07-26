@@ -253,6 +253,17 @@
                                     </div>                                    
                                 </a>
                             </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link justify-content-between"  
+                                    href="{{url('/cancel-purchase-order-list')}}">
+                                    <div class="d-flex align-items-center gap-3">
+                                    <div class="round-16 d-flex align-items-center justify-content-center">
+                                        <i class="ti ti-circle"></i>
+                                    </div>
+                                    <span class="hide-menu">Cancel list</span>
+                                    </div>                                    
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">

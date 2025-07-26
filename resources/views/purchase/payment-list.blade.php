@@ -22,10 +22,10 @@
                 @include('message.message')
                 <div class="container mt-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="m-0">Medicine Order List</h4>
-                        <!-- <h5 class="m-0 text-primary">
-                            <a href="#" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
-                        </h5> -->
+                        <h4 class="m-0">Medicine Payment Order List</h4>
+                        <h5 class="m-0 text-primary">
+                            <a href="{{url('/print/payment/order/list')}}" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
+                        </h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped " id="printableTable">
@@ -145,6 +145,16 @@
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{asset('assets/js/dueCollection.js')}}"></script>
+
+    <script>
+        @if(session('success'))
+            window.onload = function() {
+                const reg = "{{ session('reg') }}";
+                const printUrl = `{{ url('/specific-purchase-order-print-make') }}/${reg}`;
+                window.open(printUrl, '_blank');
+            };
+        @endif
+    </script>
     
 </body>
 </html>

@@ -180,6 +180,17 @@ class PurchaseController extends Controller
         return view('purchase.purchase-order-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
 
+    public function printPurchaseOrderList(){
+        $order = Purchaseorder::where('status', 1)->with('user')->paginate(20);
+        $total = Purchaseorder::where('status', 1)->sum('total');
+        $discount = Purchaseorder::where('status', 1)->sum('discount');
+        $payable = Purchaseorder::where('status', 1)->sum('payable');
+        $pay = Purchaseorder::where('status', 1)->sum('pay');
+        $due = Purchaseorder::where('status', 1)->sum('due');
+        $vat = Purchaseorder::where('status', 1)->sum('vat');
+        return view('purchase.print.print-purchase-order-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
     public function printPurchaseOrderSpecific($reg){
         $cart = Purchasecart::where('chalan_reg', $reg)->with('medicine','user')->get();
         $order = Purchaseorder::where('chalan_reg', $reg)->with('user')->first();
@@ -196,6 +207,7 @@ class PurchaseController extends Controller
 
     public function cancelOrder($reg){
         $order = Purchaseorder::where('chalan_reg', $reg)->first();
+        $order->delivary_date = Carbon::now()->format('Y-m-d');
         $order->status = 3;
         $order->update();
         return redirect()->route('purchase.order.list')->with('success', 'Order cancel successfully.');
@@ -256,6 +268,17 @@ class PurchaseController extends Controller
         $due = Purchaseorder::where('status', 2)->sum('due');
         $vat = Purchaseorder::where('status', 2)->sum('vat');
         return view('purchase.complete-order', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function printCompletePurchaseOrder(){
+        $order = Purchaseorder::where('status', 2)->paginate(20);
+        $total = Purchaseorder::where('status', 2)->sum('total');
+        $discount = Purchaseorder::where('status', 2)->sum('discount');
+        $payable = Purchaseorder::where('status', 2)->sum('payable');
+        $pay = Purchaseorder::where('status', 2)->sum('pay');
+        $due = Purchaseorder::where('status', 2)->sum('due');
+        $vat = Purchaseorder::where('status', 2)->sum('vat');
+        return view('purchase.print.print-complete-order', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
 
     public function payBill($reg){
@@ -337,6 +360,17 @@ class PurchaseController extends Controller
         return view('purchase.payment-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
 
+    public function printPaymentList(){
+        $order = Purchaseorder::where('status', 4)->paginate(20);
+        $total = Purchaseorder::where('status', 4)->sum('total');
+        $discount = Purchaseorder::where('status', 4)->sum('discount');
+        $payable = Purchaseorder::where('status', 4)->sum('payable');
+        $pay = Purchaseorder::where('status', 4)->sum('pay');
+        $due = Purchaseorder::where('status', 4)->sum('due');
+        $vat = Purchaseorder::where('status', 4)->sum('vat');
+        return view('purchase.print.print-payment-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
     public function duePay(Request $request){
         $reg = $request->input('txtReg', '');
         $received = $request->input('txtReceivedAmount', '');
@@ -356,7 +390,7 @@ class PurchaseController extends Controller
             $order->pay += $received;
         }
         $order->update();
-        return redirect()->back()->with('success', 'Order sale successfully.');
+        return redirect()->back()->with('success', 'Order sale successfully.')->with('reg', $reg);
     }
 
     public function printPaymentOrder($reg){
@@ -369,5 +403,27 @@ class PurchaseController extends Controller
         $due = Purchaseorder::where('chalan_reg', $reg)->sum('due');
         $vat = Purchaseorder::where('chalan_reg', $reg)->sum('vat');
         return view('purchase.print-order-payment', compact('cart','order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function cancelOrderList(){
+        $order = Purchaseorder::where('status',3)->paginate(20); 
+        $total = Purchaseorder::where('status',3)->sum('total');
+        $discount = Purchaseorder::where('status',3)->sum('discount');
+        $payable = Purchaseorder::where('status',3)->sum('payable');
+        $pay = Purchaseorder::where('status',3)->sum('pay');
+        $due = Purchaseorder::where('status',3)->sum('due');
+        $vat = Purchaseorder::where('status',3)->sum('vat');
+        return view('purchase.cancel-order-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function printCancelOrder(){
+        $order = Purchaseorder::where('status',3)->paginate(20); 
+        $total = Purchaseorder::where('status',3)->sum('total');
+        $discount = Purchaseorder::where('status',3)->sum('discount');
+        $payable = Purchaseorder::where('status',3)->sum('payable');
+        $pay = Purchaseorder::where('status',3)->sum('pay');
+        $due = Purchaseorder::where('status',3)->sum('due');
+        $vat = Purchaseorder::where('status',3)->sum('vat');
+        return view('purchase.print.print-cancel-order-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
 }

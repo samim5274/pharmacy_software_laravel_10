@@ -22,9 +22,9 @@
                 @include('message.message')
                 <div class="container mt-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="m-0">Medicine Complete Order List</h4>
+                        <h4 class="m-0">Medicine Cancel Order List</h4>
                         <h5 class="m-0 text-primary">
-                            <a href="{{url('/print/complete/purchase/order')}}" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
+                            <a href="{{url('/print/cancel/order/list')}}" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
                         </h5>
                     </div>
                     <div class="table-responsive">
@@ -40,7 +40,6 @@
                                     <th>Payable (৳)</th>
                                     <th>Pay (৳)</th>
                                     <th>Due (৳)</th>
-                                    <th class="text-center">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,18 +47,13 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{$val->delivary_date}}</td>
-                                    <td><a href="{{ url('/specific-purchase-order-print-make/' . $val->chalan_reg) }}" target="_blank"  title="Print Invoice"> CHL-{{$val->chalan_reg}} <i class="fa-solid fa-print text-primary"></i></a></td>
+                                    <td>CHL-{{$val->chalan_reg}}</td>
                                     <td>৳{{$val->total}}/-</td>
                                     <td>৳{{$val->discount}}/-</td>
                                     <td>৳{{$val->vat}}/-</td>
                                     <td>৳{{$val->payable}}/-</td>
                                     <td>৳{{$val->pay}}/-</td>
                                     <td>৳{{$val->due}}/-</td>
-                                    <td class="text-center">
-                                        <a href="{{url('/purchase-bill-pay/'.$val->chalan_reg)}}"><span class="badge bg-success px-2 py-2 text-white">
-                                            <i class="fa-solid fa-money-bill-1-wave"></i>
-                                        </span></a>
-                                    </td>
                                 </tr>
                                 @endforeach
                                 <tr class="table-info">
@@ -70,7 +64,6 @@
                                     <td>৳{{$payable}}/-</td>
                                     <td>৳{{$pay}}/-</td>
                                     <td>৳{{$due}}/-</td>
-                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>

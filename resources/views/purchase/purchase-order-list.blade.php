@@ -23,9 +23,9 @@
                 <div class="container mt-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="m-0">Medicine Order List</h4>
-                        <!-- <h5 class="m-0 text-primary">
-                            <a href="#" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
-                        </h5> -->
+                        <h5 class="m-0 text-primary">
+                            <a href="{{url('/print/purchase/order/list')}}" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
+                        </h5>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped " id="printableTable">

@@ -30,19 +30,37 @@ class CartController extends Controller
     public function addCart(Request $request){
         $id = $request->input('search', '');
         $date = Carbon::now()->format('Y-m-d');
+
         $cart = new Cart();
         $stock = new Stock();
-        $product = Product::where('name', 'like', '%'.$id.'%')->orWhere('id', 'like', '%'.$id.'%')->first();
+
+        // $product = Product::where('name', 'like', '%'.$id.'%')->orWhere('id', 'like', '%'.$id.'%')->first();
+        $product = Product::where(function($query) use ($id) {
+                        $query->where('name', 'like', '%' . $id . '%')
+                            ->orWhere('id', 'like', '%' . $id . '%');
+                    })
+                    ->orderBy('expiry_date', 'asc')
+                    ->first();
+
         if(empty($product)) {
             return redirect()->back()->with('error','This item not availabel righ now');
         }
-        if($product->stock <= 0) {
-            return redirect()->back()->with('warning','Sorry 😞 This item stock not availabel righ now. Try to another. Thank You!');
+
+        if($product->stock <= 0 || $product->expiry_date <= $date) {
+            $product = Product::where('name', $product->name)
+                                ->where('stock', '>', 0)
+                                ->whereDate('expiry_date', '>', $date)
+                                ->orderBy('expiry_date', 'asc')
+                                ->first();
+            if(empty($product)) {
+                return redirect()->back()->with('error','This item not availabel righ now');
+            }            
         }
+
         if($product->expiry_date <= $date){
             return redirect()->back()->with('warning','Sorry 😞 This item is expried. Try to another. Thank You!');
         }
-
+        
         $reg = $this->genRegNum();
         $findFood = Cart::where('reg', $reg)->where('medicine_id', $product->id)->first();
 

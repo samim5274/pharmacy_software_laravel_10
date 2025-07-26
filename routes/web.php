@@ -65,3 +65,8 @@ Route::post('/purchase-pay', [PurchaseController::class, 'billPay']);
 Route::get('/payment-list', [PurchaseController::class, 'paymentList'])->name('payment.list.view');
 Route::post('/due-pay-purchase-order', [PurchaseController::class, 'duePay']);
 Route::get('/print-specific-purchase-pay-order/{reg}', [PurchaseController::class, 'printPaymentOrder']);
+Route::get('/cancel-purchase-order-list', [PurchaseController::class, 'cancelOrderList'])->name('purchase.order.cancel.list.view');
+Route::get('/print/purchase/order/list', [PurchaseController::class, 'printPurchaseOrderList']);
+Route::get('/print/complete/purchase/order', [PurchaseController::class, 'printCompletePurchaseOrder']);
+Route::get('/print/payment/order/list', [PurchaseController::class, 'printPaymentList']);
+Route::get('/print/cancel/order/list', [PurchaseController::class, 'printCancelOrder']);
