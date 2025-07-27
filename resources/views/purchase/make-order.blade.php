@@ -154,6 +154,22 @@
                                         <p id="result" class="display-6 text-danger">Amount: 00/-</p>
                                     </div>
 
+                                    <hr>
+
+                                    <div class="mb-3 row">
+                                        <label for="supplier" class="col-sm-3 col-form-label">Supplier</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="cbxSupplier" required id="supplier">
+                                                <option selected disabled>--Select Supplier--</option>
+                                                @foreach($supplier as $val)
+                                                    <option value="{{ $val->id }}">{{ $val->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
                                     <button type="submit" id="confirmBtn" class="btn btn-outline-success w-100">
                                         <span id="btnText">
                                             <h4 class="m-0">Confirm</h4>

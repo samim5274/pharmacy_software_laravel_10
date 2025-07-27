@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->integer('order_qty')->default(1);
             $table->integer('delivery_qty')->default(0);
+            $table->integer('return_qty')->default(0);
 
             $table->integer('status')->default(1); // ['1 = order','2 = delivery','3 = cancelled']
             $table->string('remark')->nullable();

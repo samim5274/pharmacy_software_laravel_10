@@ -55,7 +55,7 @@
         <h4>Order Invoice</h4>
     </div><hr>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-        <p style="margin: 0;">Billing office: {{$cart[0]->user_id}}</p>
+        <p style="margin: 0;">Billing office: {{$order->user->name}}</p>
         <div class="qrImg">
             QR-
         </div>

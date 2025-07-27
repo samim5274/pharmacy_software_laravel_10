@@ -57,6 +57,7 @@
     </div><hr>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
         <p style="margin: 0;">Billing office: {{$cart[0]->user->name}}</p>
+        <p style="margin: 0;">Supplier: {{$order->supplier->name}}</p>
         <div class="qrImg">
             QR-
         </div>

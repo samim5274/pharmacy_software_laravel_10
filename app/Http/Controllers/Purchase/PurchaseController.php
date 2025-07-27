@@ -11,6 +11,7 @@ use App\Models\Purchasecart;
 use App\Models\Purchaseorder;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Supplier;
 
 class PurchaseController extends Controller
 {
@@ -24,7 +25,8 @@ class PurchaseController extends Controller
         $reg = $this->genRegNum();
         $cart = Purchasecart::where('chalan_reg', $reg)->with('medicine')->get();
         $count = Purchasecart::where('chalan_reg', $reg)->count();
-        return view('purchase.make-order', compact('cart','count','reg'));
+        $supplier = Supplier::all();
+        return view('purchase.make-order', compact('cart','count','reg','supplier'));
     }
 
     public function addToCart(Request $request){
@@ -109,6 +111,7 @@ class PurchaseController extends Controller
             $request->validate([
                 'txtReg' => 'required',
                 'txtSubTotal' => 'required',
+                'cbxSupplier' => 'required'
             ]);
 
             $reg = $request->input('txtReg', '');
@@ -127,6 +130,7 @@ class PurchaseController extends Controller
             $total = $request->input('txtSubTotal', 0);
             $discount = $request->input('txtDiscount', 0);
             $vat = $request->input('txtVAT', 0);
+            $supplier = $request->input('cbxSupplier', 0);
 
             $newVat = $total * $vat / 100;
             $payable = ($total - $discount) + $newVat;
@@ -138,6 +142,7 @@ class PurchaseController extends Controller
 
             $order->order_date = Carbon::now()->format('Y-m-d');
             $order->user_id = Auth::guard('admin')->user()->id;
+            $order->supplier_id = $supplier;
             $order->chalan_reg = $reg;
             $order->total = $total;
             $order->discount = $discount;

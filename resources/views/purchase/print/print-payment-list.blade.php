@@ -99,7 +99,7 @@
             <tr>
                 <th>#</th>
                 <th>Date</th>
-                <th>User</th>
+                <th>Supplier</th>
                 <th>Chalan</th>
                 <th>Total (৳)</th>
                 <th>Discount</th>
@@ -115,7 +115,7 @@
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $val->order_date }}</td>
-                <td>{{ $val->user->name }}</td>
+                <td>{{ $val->supplier->name }}</td>
                 <td>CHL-{{ $val->chalan_reg }}</td>
                 <td>৳{{ number_format($val->total, 2) }}</td>
                 <td>৳{{ number_format($val->discount, 2) }}</td>

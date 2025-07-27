@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Purchaseorder extends Model
+class Purchasereturnorder extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'order_date',
-        'delivary_date',
+        'return_date',
         'user_id',
         'supplier_id',
         'chalan_reg',
@@ -20,15 +19,6 @@ class Purchaseorder extends Model
         'vat',
         'payable',
         'pay',
-        'due',
-        'status'
+        'due'
     ];
-
-    public function user(){
-        return $this->belongsTo(Admin::class, 'user_id','id');
-    }
-
-    public function supplier(){
-        return $this->belongsTo(Supplier::class, 'supplier_id','id');
-    }
 }

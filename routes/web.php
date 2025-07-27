@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Purchase\PurchaseController;
+use App\Http\Controllers\Purchase\PurchaseReturnController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,3 +71,7 @@ Route::get('/print/purchase/order/list', [PurchaseController::class, 'printPurch
 Route::get('/print/complete/purchase/order', [PurchaseController::class, 'printCompletePurchaseOrder']);
 Route::get('/print/payment/order/list', [PurchaseController::class, 'printPaymentList']);
 Route::get('/print/cancel/order/list', [PurchaseController::class, 'printCancelOrder']);
+
+Route::get('/purchase-return', [PurchaseReturnController::class, 'purchaseReturn'])->name('purchase.return.view');
+Route::get('/find-purchase-medicine/{reg}', [PurchaseReturnController::class, 'findPurchaseMedicine'])->name('view.purchase.order.medicine');
+Route::post('/return-qty', [PurchaseReturnController::class, 'returnQty']);

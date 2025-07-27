@@ -86,7 +86,7 @@ class CartController extends Controller
         $stock->remark = 'Sale';
 
         $product->stock -= 1;
-
+        
         $product->update();
         $stock->save();
         $cart->save();

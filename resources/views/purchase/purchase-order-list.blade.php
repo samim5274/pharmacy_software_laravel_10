@@ -49,7 +49,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{$val->order_date}}</td>
-                                    <td>{{$val->user->name}}</td>
+                                    <td>{{$val->supplier->name}}</td>
                                     <td>CHL-<a href="{{ url('/view-purchase-order/'.$val->chalan_reg) }}">{{$val->chalan_reg}}</a></td>
                                     <td>৳{{$val->total}}/-</td>
                                     <td>৳{{$val->discount}}/-</td>

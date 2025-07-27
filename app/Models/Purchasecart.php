@@ -18,6 +18,7 @@ class Purchasecart extends Model
 
         'order_qty',
         'delivery_qty',
+        'return_qty',
         
         'status',
         'remark',
