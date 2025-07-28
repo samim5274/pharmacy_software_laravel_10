@@ -99,13 +99,14 @@
                         <p class="mb-0">No items in your cart.</p>
                     </div>
                     @endif
-                    <!-- <div class="col-lg-12">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body p-3 p-md-4">
-                                <form action="#" method="POST" id="myForm">
+                                <form action="{{url('/purchase-return-payment')}}" method="POST" id="myForm">
                                     @csrf
 
                                     <input type="hidden" id="cart-total-input" name="txtSubTotal" value="{{$subtotal}}">
+                                    <input type="hidden" id="supplierId" name="txtSupplier" value="{{$order->supplier_id}}">
                                     <input type="text" id="txtReg" hidden value="{{ $reg }}" name="txtReg">
 
                                     <h5 class="mb-3">CHL-{{ $reg }}</h5>
@@ -137,21 +138,21 @@
                                     <div class="mb-3 row">
                                         <label for="num4" class="col-sm-3 col-form-label">VAT (%)</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="num4" name="txtVAT" value="0" placeholder="VAT" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
+                                            <input type="number" class="form-control" id="num4" name="txtVAT" value="0" placeholder="VAT" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0" required>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
                                         <label for="num3" class="col-sm-3 col-form-label">Discount</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="num3" name="txtDiscount" value="0" placeholder="Discount" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
+                                            <input type="number" class="form-control" id="num3" name="txtDiscount" value="0" placeholder="Discount" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0" required>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
                                         <label for="num2" class="col-sm-3 col-form-label">Pay</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" id="num2" name="txtPay" placeholder="Pay" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
+                                            <input type="number" class="form-control" id="num2" name="txtPay" placeholder="Pay" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0" required>
                                         </div>
                                     </div>
 
@@ -169,7 +170,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -235,15 +236,6 @@
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/orderPayment.js') }}"></script>
-
-    <!-- <script>
-        @if(session('success'))
-            window.onload = function() {
-                const reg = "{{ session('reg') }}";
-                const printUrl = `{{ url('/print-specific-purchase-pay-order') }}/${reg}`;
-                window.open(printUrl, '_blank');
-            };
-        @endif
-    </script> -->
+    
 </body>
 </html>

@@ -106,14 +106,15 @@
                 searchInput.focus();
             }
         };
-        // @if(session('success'))
-        //     window.onload = function() {
-        //         const reg = "{{ session('reg') }}";
-        //         const printUrl = `{{ url('/specific-purchase-order-print-make') }}/${reg}`;
-        //         window.open(printUrl, '_blank');
-        //     };
-        // @endif
+        @if(session('success'))
+            window.onload = function() {
+                const reg = "{{ session('reg') }}";
+                const printUrl = `{{ url('/print-purchase-return-invoice') }}/${reg}`;
+                window.open(printUrl, '_blank');
+            };
+        @endif
     </script>
+
 
 </body>
 </html>

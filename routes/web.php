@@ -75,3 +75,4 @@ Route::get('/print/cancel/order/list', [PurchaseController::class, 'printCancelO
 Route::get('/purchase-return', [PurchaseReturnController::class, 'purchaseReturn'])->name('purchase.return.view');
 Route::get('/find-purchase-medicine/{reg}', [PurchaseReturnController::class, 'findPurchaseMedicine'])->name('view.purchase.order.medicine');
 Route::post('/return-qty', [PurchaseReturnController::class, 'returnQty']);
+Route::post('/purchase-return-payment', [PurchaseReturnController::class, 'returnPayment']);

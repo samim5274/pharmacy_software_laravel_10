@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('payable')->nullable();
             $table->unsignedBigInteger('pay')->nullable();
             $table->bigInteger('due')->nullable();
-            $table->Integer('status')->default(1); // ['1 = order', '2 = delivery', '3 = cancelled']
+            $table->Integer('status')->default(1); // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment','5 = purchase return']
             $table->timestamps();
         });
     }

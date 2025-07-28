@@ -347,7 +347,7 @@ class PurchaseController extends Controller
             $order->status = 4; // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment']
             
             $order->update();
-            return redirect()->back()->with('success', 'Order sale successfully.')->with('reg', $reg);
+            return redirect()->route('payment.list.view')->with('success', 'Order sale successfully.')->with('reg', $reg);
 
         } catch(Exception $e) {
             return redirect()->back()->with('error', 'Your cart is empty. Try again.'.$e);

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('purchasereturns', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chalan_reg')->constrained('purchaseorders')->onDelete('restrict');
+            $table->foreignId('chalan_reg');
             $table->foreignId('product_id')->constrained('products')->onDelete('restrict');
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('restrict');
             $table->integer('return_qty');
