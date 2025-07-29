@@ -1,5 +1,6 @@
 <div class="body-wrapper-inner">
     <div class="container-fluid">
+        @include('message.message')
         <!--  Row 1 -->
         <div class="row">
             <div class="col-lg-8">

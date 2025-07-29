@@ -11,12 +11,16 @@ use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Purchase\PurchaseReturnController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('dashboard');
 
 Auth::routes();
+
+Route::get('/clear-all', [AdminController::class, 'ClearAll']);
+Route::get('/backup-database', [AdminController::class, 'backUp']);
 
 Route::get('/login', [LoginController::class, 'loginView'])->name('login.view');
 Route::get('/user-login', [LoginController::class, 'userLogin']);

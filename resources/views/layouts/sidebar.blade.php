@@ -102,6 +102,12 @@
                     <span>User Profile</span>
                 </a>
             </li>
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center" href="{{url('/backup-database')}}">
+                    <i class="fa-solid fa-database me-3"></i>
+                    <span>Backup DB</span>
+                </a>
+            </li>
             <li class="sidebar-item mt-2">
                 <a class="sidebar-link d-flex align-items-center" href="#">
                     <i class="fas fa-calendar-alt me-3"></i>
