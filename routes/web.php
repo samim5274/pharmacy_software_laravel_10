@@ -10,6 +10,7 @@ use App\Http\Controllers\Sale\SaleController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Purchase\PurchaseReturnController;
+use App\Http\Controllers\User\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,12 @@ Route::get('/login', [LoginController::class, 'loginView'])->name('login.view');
 Route::get('/user-login', [LoginController::class, 'userLogin']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/profile', [UserController::class, 'profile'])->name('profile.view');
+Route::get('/edit-profile/{id}', [UserController::class, 'editView']);
+Route::post('/update-profile/{id}', [UserController::class, 'updateProfile']);
+Route::get('/change-password', [UserController::class, 'passView']);
+Route::post('/change-password/{id}', [UserController::class, 'changePass']);
 
 Route::get('/add-product-view', [ProductController::class, 'productView'])->name('product.view');
 Route::get('/edit-product-view', [ProductController::class, 'editView']);

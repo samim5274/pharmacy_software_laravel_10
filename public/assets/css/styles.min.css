@@ -495,7 +495,7 @@ button,
 [type=button],
 [type=reset],
 [type=submit] {
-  -webkit-appearance: button;
+  --webkit-appearance: button;
 }
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -552,7 +552,7 @@ legend + * {
 }
 
 [type=search] {
-  -webkit-appearance: textfield;
+  --webkit-appearance: textfield;
   outline-offset: -2px;
 }
 
@@ -574,7 +574,7 @@ legend + * {
 
 ::file-selector-button {
   font: inherit;
-  -webkit-appearance: button;
+  --webkit-appearance: button;
 }
 
 output {
@@ -15647,7 +15647,7 @@ textarea.form-control-lg {
 .left-sidebar .scroll-sidebar {
   overflow-y: auto;
   padding: 0 24px;
-  height: calc(100vh - 310px);
+  height: 100%;
   border-radius: 7px;
 }
 .left-sidebar .scroll-sidebar .simplebar-track.simplebar-horizontal {
@@ -15818,13 +15818,8 @@ textarea.form-control-lg {
   width: 100%;
   background: var(--bs-body-bg);
   padding: 0 10px;
-  top: 65px;
 }
-@media (max-width: 991.98px) {
-  .app-header {
-    top: 131px;
-  }
-}
+
 .app-header .container-fluid, .app-header .container-sm, .app-header .container-md, .app-header .container-lg, .app-header .container-xl, .app-header .container-xxl {
   max-width: 1300px;
   margin: 0 auto;
@@ -15908,15 +15903,15 @@ body {
   min-height: calc(100vh - 110px);
 }
 .body-wrapper .container-fluid, .body-wrapper .container-sm, .body-wrapper .container-md, .body-wrapper .container-lg, .body-wrapper .container-xl, .body-wrapper .container-xxl {
-  max-width: 1300px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 24px;
   transition: 0.2s ease-in;
-  padding-top: 180px;
+  padding-top: 90px;
 }
 @media (max-width: 991.98px) {
   .body-wrapper .container-fluid, .body-wrapper .container-sm, .body-wrapper .container-md, .body-wrapper .container-lg, .body-wrapper .container-xl, .body-wrapper .container-xxl {
-    padding-top: 230px;
+    padding-top: 90;
   }
 }
 
@@ -15931,13 +15926,8 @@ body {
 
 #main-wrapper[data-layout=vertical][data-sidebar-position=fixed] .left-sidebar {
   position: fixed;
-  top: 65px;
 }
-@media (max-width: 991.98px) {
-  #main-wrapper[data-layout=vertical][data-sidebar-position=fixed] .left-sidebar {
-    top: 131px;
-  }
-}
+
 #main-wrapper[data-layout=vertical][data-header-position=fixed] .app-header {
   position: fixed;
   z-index: 10;
@@ -15967,7 +15957,7 @@ body {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
   .left-sidebar .scroll-sidebar {
-    height: calc(100vh - 240px);
+    height: 100%;
   }
 }
 * {

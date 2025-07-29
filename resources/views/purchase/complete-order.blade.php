@@ -20,7 +20,7 @@
         <div class="body-wrapper-inner">
             <div class="container-fluid">
                 @include('message.message')
-                <div class="container mt-4">
+                <div class="mt-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="m-0">Medicine Complete Order List</h4>
                         <h5 class="m-0 text-primary">

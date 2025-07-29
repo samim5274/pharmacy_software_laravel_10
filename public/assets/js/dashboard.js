@@ -9,11 +9,15 @@ $(function () {
     series: [
       {
         name: "Ample Admin",
-        data: [355, 390, 300, 350, 390, 180],
+        data: [1355, 1390, 1300, 1350, 1390, 1180],
       },
       {
         name: "Pixel Admin",
-        data: [280, 250, 325, 215, 250, 310],
+        data: [1280, 1250, 1325, 1215, 1250, 1310],
+      },
+      {
+        name: "Total Sale",
+        data: [1200, 1450, 1800, 1000, 1280, 1500],
       },
     ],
     chart: {
@@ -45,14 +49,14 @@ $(function () {
         borderRadius: 5,
       },
     },
-    colors: ["var(--bs-primary)", "var(--bs-secondary)"],
+    colors: ["var(--bs-primary)", "var(--bs-secondary)", "var(--bs-success)"],
     dataLabels: {
       enabled: false,
     },
     yaxis: {
       show: true,
-      min: 100,
-      max: 400,
+      min: 0,
+      max: 2000,
       tickAmount: 3,
     },
     stroke: {

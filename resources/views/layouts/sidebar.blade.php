@@ -1,309 +1,113 @@
-<!--  App Topstrip -->
-    <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
-        <a class="d-flex align-items-center gap-2 text-decoration-none" href="#">
-            <img src="{{ asset('assets/images/logos/main-icon.png') }}" alt="Logo" width="40">
-            <h4 class="mb-0 text-light">Abid Pharmacy Ltd.</h4>
+<aside class="left-sidebar bg-light shadow-sm">
+    <div class="brand-logo d-flex align-items-center justify-content-between p-3 border-bottom">
+        <a href="{{ url('/') }}" class="text-nowrap logo-img">
+            <img src="assets/images/logos/main-icon.png" alt="Logo" width="40" />
         </a>
-      </div>
-    </div>
-    
-<aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-        <div>
-            <div class="brand-logo d-flex align-items-center justify-content-between">
-                <a href="{{url('/')}}" class="text-nowrap logo-img">
-                    <img src="assets/images/logos/main-icon.png" alt="" width="40"/>
-                </a>
-                <h4>Pharmacy Shop</h4>
-                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                    <i class="ti ti-x fs-6"></i>
-                </div>
-            </div>
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-                <ul id="sidebarnav">
-                    <li class="nav-small-cap">
-                        <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                        <span class="hide-menu">Home</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{url('/')}}" aria-expanded="false">
-                            <i class="fa-solid fa-gauge-high"></i>
-                            <span class="hide-menu">Dashboard</span>
-                        </a>
-                    </li>
-                    <!-- ---------------------------------- -->
-                    <!-- Dashboard -->
-                    <!-- ---------------------------------- -->
-                    <!-- <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between"  
-                            href="#" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-aperture"></i>
-                            </span>
-                            <span class="hide-menu">Analytical</span>
-                            </div>
-                            
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between"  
-                            href="#" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-shopping-cart"></i>
-                            </span>
-                            <span class="hide-menu">eCommerce</span>
-                            </div>
-                            
-                        </a>
-                    </li> -->
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="fa-solid fa-chart-simple"></i>
-                            </span>
-                                <span class="hide-menu">Product</span>
-                            </div>
-                            
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/add-product-view')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Add New</span>
-                                    </div>
-                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/edit-product-view')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Edit</span>
-                                    </div>
-                                    
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <span class="sidebar-divider lg"></span>
-                    </li>
-                    <li class="nav-small-cap">
-                        <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                        <span class="hide-menu">Ecommerce</span>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                                <span class="d-flex">
-                                    <i class="ti ti-basket"></i>
-                                </span>
-                                <span class="hide-menu">Sale</span>
-                            </div>
-                            
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/cart-view')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="round-16 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu">Cart</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/order-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="round-16 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu">Order</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/return-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="round-16 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu">Return</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-chart-donut-3"></i>
-                            </span>
-                            <span class="hide-menu">Damage</span>
-                            </div>
-                            
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="#">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Damage Item</span>
-                                    </div>
-                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/expired-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Expire</span>
-                                    </div>                                
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/expired-list-6-month')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Expire on 180 Days</span>
-                                    </div>                                
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-chart-donut-3"></i>
-                            </span>
-                            <span class="hide-menu">Purchase</span>
-                            </div>
-                            
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/make-purchase-order')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Make Order</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/purchase-order-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Order List</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/complete-purchase-order')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Complete Order</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/payment-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Payment</span>
-                                    </div>                                    
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between"  
-                                    href="{{url('/cancel-purchase-order-list')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                        <i class="ti ti-circle"></i>
-                                    </div>
-                                    <span class="hide-menu">Cancel list</span>
-                                    </div>                                    
-                                </a>
-                            </li> 
-                            <li class="sidebar-item">
-                                <a class="sidebar-link justify-content-between" href="{{url('/purchase-return')}}">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="round-16 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-circle"></i>
-                                        </div>
-                                        <span class="hide-menu">Purchase Return</span>
-                                    </div>                                    
-                                </a>
-                            </li>                           
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between"  
-                            href="#"
-                            aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-user-circle"></i>
-                            </span>
-                            <span class="hide-menu">User Profile</span>
-                            </div>
-                            
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link justify-content-between"  
-                            href="#" aria-expanded="false">
-                            <div class="d-flex align-items-center gap-3">
-                            <span class="d-flex">
-                                <i class="ti ti-calendar"></i>
-                            </span>
-                            <span class="hide-menu">Other</span>
-                            </div>
-                            
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
+        <h5 class="m-0">Pharmacy Shop</h5>
+        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="fas fa-times fs-6"></i>
         </div>
-        <!-- End Sidebar scroll-->
-    </aside>
+    </div>
+
+    <nav class="sidebar-nav px-3 py-4" style="overflow-y: auto; height: calc(100vh - 70px);">
+        <ul id="sidebarnav" class="list-unstyled">
+
+            <!-- Dashboard -->
+            <li class="nav-small-cap text-muted mb-2">
+                <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+            </li>
+            <li class="sidebar-item mb-2">
+                <a href="{{ url('/') }}" class="sidebar-link d-flex align-items-center">
+                    <i class="fas fa-gauge-high me-3"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Product Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fas fa-boxes me-2"></i> Product
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-box-open me-3"></i>
+                        <span>Product</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/add-product-view') }}"><i class="far fa-dot-circle me-2"></i>Add New</a></li>
+                    <li><a href="{{ url('/edit-product-view') }}"><i class="far fa-dot-circle me-2"></i>Edit</a></li>
+                </ul>
+            </li>
+
+            <!-- Ecommerce Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fas fa-shopping-cart me-2"></i> Ecommerce
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-shopping-basket me-3"></i>
+                        <span>Sale</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/cart-view') }}"><i class="far fa-dot-circle me-2"></i>Cart</a></li>
+                    <li><a href="{{ url('/order-list') }}"><i class="far fa-dot-circle me-2"></i>Order</a></li>
+                    <li><a href="{{ url('/return-list') }}"><i class="far fa-dot-circle me-2"></i>Return</a></li>
+                </ul>
+            </li>
+
+            <!-- Damage Section -->
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-exclamation-circle me-3"></i>
+                        <span>Damage</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>Damage Item</a></li>
+                    <li><a href="{{ url('/expired-list') }}"><i class="far fa-dot-circle me-2"></i>Expire</a></li>
+                    <li><a href="{{ url('/expired-list-6-month') }}"><i class="far fa-dot-circle me-2"></i>Expire on 180 Days</a></li>
+                </ul>
+            </li>
+
+            <!-- Purchase Section -->
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-file-invoice-dollar me-3"></i>
+                        <span>Purchase</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/make-purchase-order') }}"><i class="far fa-dot-circle me-2"></i>Make Order</a></li>
+                    <li><a href="{{ url('/purchase-order-list') }}"><i class="far fa-dot-circle me-2"></i>Order List</a></li>
+                    <li><a href="{{ url('/complete-purchase-order') }}"><i class="far fa-dot-circle me-2"></i>Complete Order</a></li>
+                    <li><a href="{{ url('/payment-list') }}"><i class="far fa-dot-circle me-2"></i>Payment</a></li>
+                    <li><a href="{{ url('/cancel-purchase-order-list') }}"><i class="far fa-dot-circle me-2"></i>Cancel List</a></li>
+                    <li><a href="{{ url('/purchase-return') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
+                </ul>
+            </li>
+
+            <!-- User & Other -->
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center" href="{{url('/profile')}}">
+                    <i class="fas fa-user-circle me-3"></i>
+                    <span>User Profile</span>
+                </a>
+            </li>
+            <li class="sidebar-item mt-2">
+                <a class="sidebar-link d-flex align-items-center" href="#">
+                    <i class="fas fa-calendar-alt me-3"></i>
+                    <span>Other</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>

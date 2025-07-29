@@ -22,6 +22,10 @@
                                     <span class="round-8 text-bg-info rounded-circle me-1 d-inline-block"></span>
                                     Pixel Admin
                                 </li>
+                                <li class="list-inline-item text-success">
+                                    <span class="round-8 text-bg-success rounded-circle me-1 d-inline-block"></span>
+                                    Total Sale
+                                </li>
                                 </ul>
                             </div>
                         </div>

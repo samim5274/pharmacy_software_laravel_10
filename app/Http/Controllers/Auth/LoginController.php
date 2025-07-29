@@ -35,6 +35,7 @@ class LoginController extends Controller
     }
 
     public function loginView(){
+        Auth::guard('admin')->logout();
         return view('login.login');
     }
 
