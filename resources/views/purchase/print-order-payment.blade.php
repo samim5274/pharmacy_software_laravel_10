@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Print Total Order List</title>
-    <link rel="icon" href="./img/LOGO35 pix.png" type="image/x-icon"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
-    <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}">
     <style>
         body { font-family: DejaVu Sans, sans-serif; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }

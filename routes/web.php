@@ -76,3 +76,4 @@ Route::get('/purchase-return', [PurchaseReturnController::class, 'purchaseReturn
 Route::get('/find-purchase-medicine/{reg}', [PurchaseReturnController::class, 'findPurchaseMedicine'])->name('view.purchase.order.medicine');
 Route::post('/return-qty', [PurchaseReturnController::class, 'returnQty']);
 Route::post('/purchase-return-payment', [PurchaseReturnController::class, 'returnPayment']);
+Route::get('/print-purchase-return-invoice/{reg}', [PurchaseReturnController::class, 'printReturn']);

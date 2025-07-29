@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('chalan_reg');
             $table->foreignId('product_id')->constrained('products')->onDelete('restrict');
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('restrict');
+            $table->integer('purchase_price');
             $table->integer('return_qty');
             $table->date('return_date')->default(now());
             $table->text('reason')->default('N/A');

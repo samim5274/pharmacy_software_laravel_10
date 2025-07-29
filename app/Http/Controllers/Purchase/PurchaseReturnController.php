@@ -18,7 +18,8 @@ use App\Models\Purchasereturnorder;
 class PurchaseReturnController extends Controller
 {
     public function purchaseReturn(){
-        $order = Purchaseorder::where('status', 2)->orWhere('status', 4)->paginate(20);      // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment','5 = purchase return']
+        // $order = Purchaseorder::where('status', 2)->orWhere('status', 4)->paginate(20);      // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment','5 = purchase return']
+        $order = Purchaseorder::where('status', 4)->paginate(20);      // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment','5 = purchase return']
         return view('purchase.return.return-purchase', compact('order'));
     }
 
@@ -53,20 +54,34 @@ class PurchaseReturnController extends Controller
             return redirect()->back()->with('error', 'This item not found. Please try to another and try again. Thank You!');
         }
 
-        $stock = new Stock();
+        $stock = Stock::where('reg', $reg)->where('medicine_id', $medicine)->first();
+        if(!$stock){
+            return redirect()->back()->with('error', 'This item not found. Please try to another and try again. Thank You!');
+        }
+
         $stock->medicine_id = $medicine;
         $stock->stockOut = $qty;
         $stock->remark = 'Return';
+        $stock->reg = $reg;
         $stock->date = Carbon::now()->format('Y-m-d');
 
         $purReturnCart = Purchasereturn::where('chalan_reg', $reg)->where('product_id', $medicine)->first();
         if($purReturnCart){
-            return redirect()->back()->with('error', 'This item already returned. Please try to another and try again. Thank You!');
+            $purReturnCart->return_qty = $qty;
+            $purReturnCart->purchase_price = $product->purchase_price;
+            $cart->return_qty = $qty;
+            
+            $stock->stockOut = $qty;
+            $cart->update();
+            $stock->update();
+            $purReturnCart->update();
+            return redirect()->back()->with('success', 'This item qty update successfully. Thank You!');
         }
         $purReturn = new Purchasereturn();
         $purReturn->chalan_reg = $reg;
         $purReturn->product_id = $medicine;
         $purReturn->supplier_id = $order->supplier_id;
+        $purReturn->purchase_price = $product->purchase_price;
         $purReturn->return_qty = $qty;
         $purReturn->return_date = Carbon::now()->format('Y-m-d');
         
@@ -135,5 +150,11 @@ class PurchaseReturnController extends Controller
         $returnOrder->save();
 
         return redirect()->route('purchase.return.view')->with('success', 'Order sale successfully.')->with('reg', $reg);
+    }
+
+    public function printReturn($reg){
+        $returnOrder = Purchasereturnorder::where('chalan_reg', $reg)->first();
+        $returnCart = Purchasereturn::where('chalan_reg', $reg)->get();
+        return view('purchase.return.print-purchase-return', compact('returnOrder','returnCart'));
     }
 }

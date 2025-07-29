@@ -20,4 +20,8 @@ class Supplier extends Model
     public function purchaseorder(){
         return $this->hasMany(Purchaseorder::class, 'supplier_id','id');
     }
+
+    public function purchaseReturnOrder(){
+        return $this->hasMany(Purchasereturnorder::class, 'supplier_id','id');
+    }
 }

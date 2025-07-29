@@ -13,8 +13,13 @@ class Purchasereturn extends Model
         'chalan_reg',
         'product_id',
         'supplier_id',
+        'purchase_price',
         'return_qty',
         'return_date',
         'reason',
     ];
+
+    public function medicine(){
+        return $this->belongsTo(Product::class, 'product_id','id');
+    }
 }

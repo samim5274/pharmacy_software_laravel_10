@@ -41,4 +41,8 @@ class Admin extends Authenticatable
     public function purchaseCart(){
         return $this->hasMany(Purchasecart::class, 'user_id','id');
     }
+
+    public function purchaseReturnOrder(){
+        return $this->hasMany(Purchasereturnorder::class, 'user_id','id');
+    }
 }

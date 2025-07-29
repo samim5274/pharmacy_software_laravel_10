@@ -21,4 +21,12 @@ class Purchasereturnorder extends Model
         'pay',
         'due'
     ];
+
+    public function user(){
+        return $this->belongsTo(Admin::class, 'user_id', 'id');
+    }
+
+    public function supplier(){
+        return $this->belongsTo(Supplier::class, 'supplier_id','id');
+    }
 }

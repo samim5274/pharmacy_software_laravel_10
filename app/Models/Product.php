@@ -37,4 +37,8 @@ class Product extends Model
     public function purchasecart(){
         return $this->hasMany(Purchasecart::class, 'medicine_id','id');
     }
+
+    public function purchaseReturnCart(){
+        return $this->hasMany(Purchasereturn::class, 'product_id','id');
+    }
 }
