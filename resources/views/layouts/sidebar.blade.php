@@ -95,6 +95,24 @@
                 </ul>
             </li>
 
+            <!-- Sale Report Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fas fa-boxes me-2"></i> Sale Report
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-box-open me-3"></i>
+                        <span>Sale Report</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/sale-report') }}"><i class="far fa-dot-circle me-2"></i>Total Sale</a></li>
+                    <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
+                </ul>
+            </li>
+
             <!-- User & Other -->
             <li class="sidebar-item mt-3">
                 <a class="sidebar-link d-flex align-items-center" href="{{url('/profile')}}">

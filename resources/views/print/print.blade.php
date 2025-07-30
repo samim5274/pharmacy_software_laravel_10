@@ -52,7 +52,7 @@
     <div class="invoice-header">
         <h2>Abir Pharmacy</h2>
         <p>House #02, Road #11, Sector #6, Uttara, Dhaka-1230</p>
-        <h4>Order Invoice</h4>
+        <h4>Sale Invoice</h4>
     </div><hr>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
         <p style="margin: 0;">Billing office: {{$order->user->name}}</p>

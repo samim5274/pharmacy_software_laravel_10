@@ -7,6 +7,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Sale\SaleController;
+use App\Http\Controllers\Sale\SaleReportController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Purchase\PurchaseReturnController;
@@ -51,6 +52,11 @@ Route::post('/cart/update-quantity', [CartController::class, 'updateQty']);
 Route::post('/confirm-order', [SaleController::class, 'confirmOrder']);
 Route::get('/specific-order-print/{reg}', [SaleController::class, 'printOrder']);
 Route::post('/due-collection/{reg}', [SaleController::class, 'dueCollection']);
+
+Route::get('/sale-report', [SaleReportController::class, 'saleReport'])->name('current.date.wise.sale.report');
+Route::get('/filter-date-wise-sale-report', [SaleReportController::class, 'filterDateWiseSaleReport']);
+Route::get('/product-sale-report', [SaleReportController::class, 'productAndDateSaleReport']);
+Route::get('/filter-date-wise-product-sale-report', [SaleReportController::class, 'dateWiseProductSaleReport']);
 
 Route::get('/order-list', [OrderController::class, 'orderList'])->name('order.list');
 Route::get('/print-all-order', [OrderController::class, 'printOrder']);
