@@ -110,6 +110,28 @@
                 <ul class="collapse list-unstyled ps-4 mt-1">
                     <li><a href="{{ url('/sale-report') }}"><i class="far fa-dot-circle me-2"></i>Total Sale</a></li>
                     <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
+                    <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
+                </ul>
+            </li>
+
+            <!-- Purchase Report Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fas fa-boxes me-2"></i> Purchase Report
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-box-open me-3"></i>
+                        <span>Purchase Report</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/purchase-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Total</a></li>
+                    <li><a href="{{ url('/purchase-delivery-report') }}"><i class="far fa-dot-circle me-2"></i>Total Delivery</a></li>
+                    <li><a href="{{ url('/purchase-payment-report') }}"><i class="far fa-dot-circle me-2"></i>Payment Complete</a></li>
+                    <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
+                    <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
                 </ul>
             </li>
 

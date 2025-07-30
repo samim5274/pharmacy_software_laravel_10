@@ -37,18 +37,25 @@
                         </div>
 
                         <!-- Filter Form -->
-                        <form method="GET" action="{{url('/filter-date-wise-product-sale-report')}}" target="_blank" class="mb-4 p-3 rounded border bg-light">
-                            <div class="row g-3 align-items-end">
-                                <div class="col-md-5">
-                                    <label for="dtpStartDate" class="form-label">Start Date</label>
+                        <form method="GET" action="{{ url('/filter-date-wise-product-sale-report') }}" target="_blank" class="p-4 border rounded shadow-sm bg-white">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="dtpStartDate" class="form-label fw-semibold">Start Date</label>
                                     <input type="date" id="dtpStartDate" name="dtpStartDate" class="form-control" required>
                                 </div>
-                                <div class="col-md-5">
-                                    <label for="dtpEndDate" class="form-label">End Date</label>
+
+                                <div class="col-md-4">
+                                    <label for="dtpEndDate" class="form-label fw-semibold">End Date</label>
                                     <input type="date" id="dtpEndDate" name="dtpEndDate" class="form-control" required>
-                                </div>                                
-                                <div class="col-md-2">
-                                    <div class="d-grid gap-2">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="product" class="form-label fw-semibold">Medicine Name</label>
+                                    <input type="text" id="product" name="product" class="form-control" placeholder="Enter medicine name" required>
+                                </div>
+
+                                <div class="col-12 text-center">
+                                    <div class="btn-group w-100">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="bi bi-search me-1"></i> Filter
                                         </button>
@@ -57,13 +64,8 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <label for="product" class="form-label">Medicine</label>
-                                    <input type="text" id="product" name="product" class="form-control" placeholder="Enter medicine name" required>
-                                </div>
                             </div>
-                        </form>
-
+                        </form><br>
                         <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
                             <table class="table table-bordered table-hover align-middle" id="printableTable">
                                 <thead class="table-primary text-center sticky-top bg-white">

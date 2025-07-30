@@ -11,6 +11,7 @@ use App\Http\Controllers\Sale\SaleReportController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Purchase\PurchaseReturnController;
+use App\Http\Controllers\Purchase\PurchaseReportController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -57,6 +58,8 @@ Route::get('/sale-report', [SaleReportController::class, 'saleReport'])->name('c
 Route::get('/filter-date-wise-sale-report', [SaleReportController::class, 'filterDateWiseSaleReport']);
 Route::get('/product-sale-report', [SaleReportController::class, 'productAndDateSaleReport']);
 Route::get('/filter-date-wise-product-sale-report', [SaleReportController::class, 'dateWiseProductSaleReport']);
+Route::get('/sale-return-report', [SaleReportController::class, 'saleReturnReport'])->name('sale.return.report.view');
+Route::get('/filter-date-wise-sale-return-report', [SaleReportController::class, 'filterSaleReturnReport']);
 
 Route::get('/order-list', [OrderController::class, 'orderList'])->name('order.list');
 Route::get('/print-all-order', [OrderController::class, 'printOrder']);
@@ -94,3 +97,19 @@ Route::get('/find-purchase-medicine/{reg}', [PurchaseReturnController::class, 'f
 Route::post('/return-qty', [PurchaseReturnController::class, 'returnQty']);
 Route::post('/purchase-return-payment', [PurchaseReturnController::class, 'returnPayment']);
 Route::get('/print-purchase-return-invoice/{reg}', [PurchaseReturnController::class, 'printReturn']);
+
+Route::get('/purchase-report', [PurchaseReportController::class, 'totalPurchase'])->name('total.purchase.report.view');
+Route::get('/search-purchase-order', [PurchaseReportController::class, 'searchPurchaseOrder']);
+Route::get('/print/purchase/order/list/report', [PurchaseReportController::class, 'printPurchaseReport']);
+Route::get('/purchase-delivery-report', [PurchaseReportController::class, 'purchaseDeliveryReport'])->name('purchase.delivery.report.view');
+Route::get('/print/purchase/order/delivery/report', [PurchaseReportController::class, 'printPurchaseDeliveryReport']);
+Route::get('/search-purchase-delivery-report', [PurchaseReportController::class, 'searchPurchaseDeliveryReport']);
+Route::get('/purchase-payment-report', [PurchaseReportController::class, 'paymentCompleteReport']);
+Route::get('/print/purchase/order/payment/report', [PurchaseReportController::class, 'printPaymentCompleteReport']);
+Route::get('/search-purchase-payment-report', [PurchaseReportController::class, 'searchPaymentCompleteReport']);
+Route::get('/purchase-cancel-report', [PurchaseReportController::class, 'cancelPurchaseReport']);
+Route::get('/print/purchase/order/cancel/report', [PurchaseReportController::class, 'printCancelPurchaseReport']);
+Route::get('/search-purchase-cancel-report', [PurchaseReportController::class, 'searchCancelPurchaseReport']);
+Route::get('/purchase-return-report', [PurchaseReportController::class, 'returnPurchaseReport']);
+Route::get('/print/purchase/order/return/report', [PurchaseReportController::class, 'printReturnPurchaseReport']);
+Route::get('/search-purchase-return', [PurchaseReportController::class, 'searchPurchaseReturnReport']);
