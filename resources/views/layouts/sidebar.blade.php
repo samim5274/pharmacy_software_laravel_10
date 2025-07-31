@@ -1,6 +1,6 @@
 <aside class="left-sidebar bg-light shadow-sm">
     <div class="brand-logo d-flex align-items-center justify-content-between p-3 border-bottom">
-        <a href="{{ url('/') }}" class="text-nowrap logo-img">
+        <a href="{{ url('/home') }}" class="text-nowrap logo-img">
             <img src="assets/images/logos/main-icon.png" alt="Logo" width="40" />
         </a>
         <h5 class="m-0">Pharmacy Shop</h5>
@@ -17,7 +17,7 @@
                 <i class="fas fa-tachometer-alt me-2"></i> Dashboard
             </li>
             <li class="sidebar-item mb-2">
-                <a href="{{ url('/') }}" class="sidebar-link d-flex align-items-center">
+                <a href="{{ url('/home') }}" class="sidebar-link d-flex align-items-center">
                     <i class="fas fa-gauge-high me-3"></i>
                     <span>Dashboard</span>
                 </a>
@@ -60,6 +60,25 @@
                 </ul>
             </li>
 
+            <!-- Sale Report Section -->
+            <!-- <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fas fa-boxes me-2"></i> Sale Report
+            </li> -->
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fas fa-box-open me-3"></i>
+                        <span>Sale Report</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/sale-report') }}"><i class="far fa-dot-circle me-2"></i>Total Sale</a></li>
+                    <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
+                    <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
+                </ul>
+            </li>
+
             <!-- Damage Section -->
             <li class="sidebar-item mt-3">
                 <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
@@ -76,7 +95,12 @@
                 </ul>
             </li>
 
-            <!-- Purchase Section -->
+            <!-- Purchase Report Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fa-solid fa-cart-plus me-2"></i> Purchase Report
+            </li>
+
+             <!-- Purchase Section -->
             <li class="sidebar-item mt-3">
                 <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
                     <div>
@@ -95,29 +119,6 @@
                 </ul>
             </li>
 
-            <!-- Sale Report Section -->
-            <li class="nav-small-cap text-muted mt-4 mb-2">
-                <i class="fas fa-boxes me-2"></i> Sale Report
-            </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
-                    <div>
-                        <i class="fas fa-box-open me-3"></i>
-                        <span>Sale Report</span>
-                    </div>
-                    <i class="fas fa-angle-down"></i>
-                </a>
-                <ul class="collapse list-unstyled ps-4 mt-1">
-                    <li><a href="{{ url('/sale-report') }}"><i class="far fa-dot-circle me-2"></i>Total Sale</a></li>
-                    <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
-                    <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
-                </ul>
-            </li>
-
-            <!-- Purchase Report Section -->
-            <li class="nav-small-cap text-muted mt-4 mb-2">
-                <i class="fas fa-boxes me-2"></i> Purchase Report
-            </li>
             <li class="sidebar-item">
                 <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
                     <div>
@@ -133,6 +134,11 @@
                     <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
                     <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
                 </ul>
+            </li>
+
+            <!-- Other Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fa-solid fa-suitcase me-3"></i> Other Report
             </li>
 
             <!-- User & Other -->
