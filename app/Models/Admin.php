@@ -45,4 +45,9 @@ class Admin extends Authenticatable
     public function purchaseReturnOrder(){
         return $this->hasMany(Purchasereturnorder::class, 'user_id','id');
     }
+
+    public function expenses()
+    {
+        return $this->belongsTo(Expenses::class, 'userId', 'id');
+    }
 }

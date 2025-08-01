@@ -14,8 +14,9 @@ use App\Http\Controllers\Purchase\PurchaseReturnController;
 use App\Http\Controllers\Purchase\PurchaseReportController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Expenses\ExpensesController;
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 })->name('dashboard');
 
@@ -58,6 +59,8 @@ Route::get('/sale-report', [SaleReportController::class, 'saleReport'])->name('c
 Route::get('/filter-date-wise-sale-report', [SaleReportController::class, 'filterDateWiseSaleReport']);
 Route::get('/product-sale-report', [SaleReportController::class, 'productAndDateSaleReport']);
 Route::get('/filter-date-wise-product-sale-report', [SaleReportController::class, 'dateWiseProductSaleReport']);
+Route::get('/date-wise-product-sale-report', [SaleReportController::class, 'dateWiseProductReport']);
+Route::get('/filter-date-wise-product-report', [SaleReportController::class, 'dateWiseSaleProductReport']);
 Route::get('/sale-return-report', [SaleReportController::class, 'saleReturnReport'])->name('sale.return.report.view');
 Route::get('/filter-date-wise-sale-return-report', [SaleReportController::class, 'filterSaleReturnReport']);
 
@@ -113,3 +116,14 @@ Route::get('/search-purchase-cancel-report', [PurchaseReportController::class, '
 Route::get('/purchase-return-report', [PurchaseReportController::class, 'returnPurchaseReport']);
 Route::get('/print/purchase/order/return/report', [PurchaseReportController::class, 'printReturnPurchaseReport']);
 Route::get('/search-purchase-return', [PurchaseReportController::class, 'searchPurchaseReturnReport']);
+
+Route::get('/expenses', [ExpensesController::class, 'expenses'])->name('expenses.view');
+Route::get('/getSubCategory/{id}', [ExpensesController::class, 'getSubCategory']);
+Route::post('/daily-expenses', [ExpensesController::class, 'dailyExpenses']);
+Route::get('/edit-expenses/{id}', [ExpensesController::class, 'editExpenses'])->name('edit.expenses.view');
+Route::post('/update-expenses/{id}', [ExpensesController::class, 'updateExpenses']);
+Route::get('/specific-expenses-list-print/{id}', [ExpensesController::class, 'printExpensesSpecific']);
+Route::get('/expenses-setting', [ExpensesController::class, 'exSetting'])->name('expenses.setting.view');
+Route::post('/add-new-category', [ExpensesController::class, 'addExCategory']);
+Route::post('/add-new-sub-category', [ExpensesController::class, 'addExSubCategory']);
+Route::get('/print-daily-expenses', [ExpensesController::class, 'printDailyExpenses']);

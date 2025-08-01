@@ -74,6 +74,7 @@
                 </a>
                 <ul class="collapse list-unstyled ps-4 mt-1">
                     <li><a href="{{ url('/sale-report') }}"><i class="far fa-dot-circle me-2"></i>Total Sale</a></li>
+                    <li><a href="{{ url('/date-wise-product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Report</a></li>
                     <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
                     <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
                 </ul>
@@ -134,6 +135,23 @@
                     <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
                     <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
                 </ul>
+            </li>
+
+            <!-- Expenses Section -->
+            <li class="nav-small-cap text-muted mt-4 mb-2">
+                <i class="fa-solid fa-suitcase me-3"></i> Expenses Section
+            </li>
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center" href="{{url('/expenses')}}">
+                    <i class="fa-solid fa-comments-dollar me-3"></i>
+                    <span>Expenses</span>
+                </a>
+            </li>
+            <li class="sidebar-item mt-3">
+                <a class="sidebar-link d-flex align-items-center" href="{{url('/expenses-setting')}}">
+                    <i class="fa-solid fa-landmark me-3"></i>
+                    <span>Account Setting</span>
+                </a>
             </li>
 
             <!-- Other Section -->

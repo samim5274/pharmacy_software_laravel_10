@@ -93,6 +93,46 @@ class SaleReportController extends Controller
         return view('sale.report.product-and-day-wise-sale-report', compact('cart','grand_total_qty','grand_total_price'));
     }
 
+    public function dateWiseProductReport(){
+        $date = Carbon::now()->format('Ymd');
+        $cart = Cart::with('medicine.category')->where('date', $date)->get()->groupBy('medicine_id')
+                        ->map(function ($items){
+                            return [
+                                'product_name' => optional($items->first()->medicine)->name ?? 'Unknown',
+                                'total_quantity' => $items->sum('qty'),
+                                'total_price' => $items->sum('total_price'),
+                            ];
+                        });
+        $grand_total_qty = $cart->sum('total_quantity');
+        $grand_total_price = $cart->sum('total_price');
+        return view('sale.report.day-wise-product-sale-report', compact('cart','grand_total_qty','grand_total_price'));
+    }
+
+    public function dateWiseSaleProductReport(Request $request){
+        $start = $request->input('dtpStartDate','');
+        $end = $request->input('dtpEndDate','');
+
+        $cartQuery = Cart::with('medicine.category')->whereBetween('date', [$start, $end]);
+        
+        $cart = $cartQuery->get()
+                ->groupBy('medicine_id')
+                ->map(function ($items){
+                    return [
+                        'product_name'   => optional($items->first()->medicine)->name ?? 'Unknown',
+                        'total_quantity' => $items->sum('qty'),
+                        'total_price'    => $items->sum('total_price'),
+                    ];
+                });
+
+        $grand_total_qty = $cart->sum('total_quantity');
+        $grand_total_price = $cart->sum('total_price');
+
+        if($request->has('print')){
+            return view('sale.print.day-wise-product-sale-report-print', compact('cart','grand_total_qty','grand_total_price','start','end'));
+        }
+        return view('sale.report.day-wise-product-sale-report', compact('cart','grand_total_qty','grand_total_price'));
+    }
+
     public function saleReturnReport(){
         $date = Carbon::now()->format('Ymd');
         $order = Order::whereBetween('date', [$date, $date])->where('status', '=', 1)->paginate(20);
