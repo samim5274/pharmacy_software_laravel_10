@@ -20,6 +20,8 @@ Auth::routes();
 
 Route::get('/login', [LoginController::class, 'loginView'])->name('login.view');
 Route::get('/user-login', [LoginController::class, 'userLogin']);
+Route::get('/new-account-create-view', [LoginController::class, 'createAccountView'])->name('new.account.create.view');
+Route::post('/create-new-account', [LoginController::class, 'createNewAccount']);
 
 Route::group(['middleware' => ['admin']], function () {
 
@@ -47,6 +49,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/print-expired-list', [ProductController::class, 'printExpiredList']);
     Route::get('/expired-list-6-month', [ProductController::class, 'ExpritedListSixMont'])->name('expired.list.180.days.view');
     Route::get('/print-expired-list-6-month', [ProductController::class, 'printExpiredListSixMonth']);
+    Route::get('/damage-product', [ProductController::class, 'damageProduct'])->name('damage.product.view');
 
     Route::get('/cart-view', [CartController::class, 'cartView']);
     Route::get('/add-to-cart', [CartController::class, 'addCart']);

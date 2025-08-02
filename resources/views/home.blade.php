@@ -139,7 +139,7 @@
                                 <tr>
                                     <td class="px-0">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('img/employee/' . $sale->user->photo) }}" class="rounded-circle" width="40" alt="user" />
+                                            <img src="{{ asset('img/employee/' . $sale->user->photo) }}" class="rounded-circle" width="40" height="40" alt="user" />
                                             <div class="ms-3">
                                                 <h6 class="mb-0 fw-bolder">{{ $sale->user->name ?? 'Unknown' }}</h6>
                                                 <span class="text-muted">{{ $sale->user->email ?? 'No Email' }}</span>

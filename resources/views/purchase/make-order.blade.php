@@ -124,29 +124,29 @@
                                         <strong>৳<span id="cart-subtotal">00</span>/-</strong>
                                     </div>
 
-                                    <!-- VAT Input -->
+                                    <!-- VAT Input 
                                     <div class="mb-3 row">
                                         <label for="num4" class="col-sm-3 col-form-label">VAT (%)</label>
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="num4" name="txtVAT" value="0" placeholder="VAT" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <!-- Discount Input -->
+                                    <!-- Discount Input 
                                     <div class="mb-3 row">
                                         <label for="num3" class="col-sm-3 col-form-label">Discount</label>
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="num3" name="txtDiscount" value="0" placeholder="Discount" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <!-- Pay Input -->
+                                    <!-- Pay Input 
                                     <div class="mb-3 row">
                                         <label for="num2" class="col-sm-3 col-form-label">Pay</label>
                                         <div class="col-sm-9">
                                             <input type="number" class="form-control" id="num2" name="txtPay" placeholder="Pay" onkeyup="calculateAmount()" onchange="calculateAmount()" min="0">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <hr>
 

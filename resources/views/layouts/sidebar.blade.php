@@ -90,7 +90,7 @@
                     <i class="fas fa-angle-down"></i>
                 </a>
                 <ul class="collapse list-unstyled ps-4 mt-1">
-                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>Damage Item</a></li>
+                    <li><a href="{{url('/damage-product')}}"><i class="far fa-dot-circle me-2"></i>Damage Item</a></li>
                     <li><a href="{{ url('/expired-list') }}"><i class="far fa-dot-circle me-2"></i>Expire</a></li>
                     <li><a href="{{ url('/expired-list-6-month') }}"><i class="far fa-dot-circle me-2"></i>Expire on 180 Days</a></li>
                 </ul>

@@ -106,4 +106,8 @@ class ProductController extends Controller
         $stock = Product::where('expiry_date', '<=', $date)->sum('stock');
         return view('product.print-expired-list-6-month', compact('product','company','total', 'stock'));
     }
+
+    public function damageProduct(){
+        return view('product.damage-product');
+    }
 }

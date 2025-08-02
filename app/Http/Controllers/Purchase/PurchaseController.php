@@ -145,19 +145,19 @@ class PurchaseController extends Controller
             $order->user_id = Auth::guard('admin')->user()->id;
             $order->supplier_id = $supplier;
             $order->chalan_reg = $reg;
-            $order->total = $total;
-            $order->discount = $discount;
-            $order->vat = $newVat;
-            $order->payable = $payable;
+            // $order->total = $total;
+            // $order->discount = $discount;
+            // $order->vat = $newVat;
+            // $order->payable = $payable;
 
 
-            if($received >= $payable) {
-                $order->pay = $payable;
-                $order->due = 0;
-            } else {
-                $order->pay = $received;
-                $order->due = $dueAmount;
-            }
+            // if($received >= $payable) {
+            //     $order->pay = $payable;
+            //     $order->due = 0;
+            // } else {
+            //     $order->pay = $received;
+            //     $order->due = $dueAmount;
+            // }
             
             $order->status = 1; // ['1 = order', '2 = delivery', '3 = cancelled', '3 = bill payment']
             

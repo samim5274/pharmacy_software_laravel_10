@@ -61,4 +61,26 @@ class LoginController extends Controller
 
         return redirect()->back()->with('error', 'Invalid email or password. Please try again!');
     }
+
+    public function createAccountView(){
+        return view('login.create-new-account');
+    }
+
+    public function createNewAccount(Request $request){
+        $validated = $request->validate([
+            'txtName'     => 'required',
+            'txtEmail'    => 'required|email|unique:users,email',
+            'txtPassword' => 'required|min:8',
+        ]);
+
+        $user = new Admin();
+
+        $user->name = $request->input('txtName','');
+        $user->email = $request->input('txtEmail','');
+        $user->password = Hash::make($request->input('txtPassword',''));
+        $user->role = 0;
+        $user->status = 0;
+        $user->save();
+        return redirect()->route('login.view')->with('success', 'New user created successfully.');
+    }
 }
