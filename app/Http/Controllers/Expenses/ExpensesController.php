@@ -10,6 +10,7 @@ use Auth;
 use App\Models\Expenses;
 use App\Models\Excategory;
 use App\Models\Subexcategory;
+use App\Models\Company;
 
 class ExpensesController extends Controller
 {
@@ -109,13 +110,15 @@ class ExpensesController extends Controller
     public function printExpensesSpecific($id){
         $date = Carbon::now()->format('Ymd');
         $expenses = Expenses::where('id', $id)->get();
-        return view('expenses.report.specific-expenses-print', compact('expenses'));
+        $company = Company::all();
+        return view('expenses.report.specific-expenses-print', compact('expenses','company'));
     }
 
     public function printDailyExpenses(){
         $date = Carbon::now()->format('Ymd');
         $expenses = Expenses::where('date', $date)->get();
         $total = Expenses::where('date', $date)->sum('amount');
-        return view('expenses.report.daily-expenses-print', compact('expenses','total'));
+        $company = Company::all();
+        return view('expenses.report.daily-expenses-print', compact('expenses','company','total'));
     }
 }

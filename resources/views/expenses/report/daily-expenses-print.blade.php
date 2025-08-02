@@ -178,15 +178,10 @@
   <div class="invoice-wrapper">
     <!-- Header -->
     <div class="invoice-box">
-      <h2>Abir Pharmacy</h2>
-      <p>House #02, Road #11, Sector #6, Uttara, Dhaka-1230</p>
+      <h1 style="text-align:center;">{{$company[0]->name}}</h1>
+      <p style="text-align:center;">{{$company[0]->address}}</p>
+      <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
       <div class="report-title">Expenses Print</div>
-      <div class="note-mark">
-        <strong>Note:</strong> All company info get from database <code>company_info</code> table.
-      </div>
-      <div class="qrImg">
-        QR
-      </div>
     </div>
 
     <hr />

@@ -1,6 +1,6 @@
 <aside class="left-sidebar bg-light shadow-sm">
     <div class="brand-logo d-flex align-items-center justify-content-between p-3 border-bottom">
-        <a href="{{ url('/home') }}" class="text-nowrap logo-img">
+        <a href="{{ url('/') }}" class="text-nowrap logo-img">
             <img src="assets/images/logos/main-icon.png" alt="Logo" width="40" />
         </a>
         <h5 class="m-0">Pharmacy Shop</h5>
@@ -17,7 +17,7 @@
                 <i class="fas fa-tachometer-alt me-2"></i> Dashboard
             </li>
             <li class="sidebar-item mb-2">
-                <a href="{{ url('/home') }}" class="sidebar-link d-flex align-items-center">
+                <a href="{{ url('/') }}" class="sidebar-link d-flex align-items-center">
                     <i class="fas fa-gauge-high me-3"></i>
                     <span>Dashboard</span>
                 </a>

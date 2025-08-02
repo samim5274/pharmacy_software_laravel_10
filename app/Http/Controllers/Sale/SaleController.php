@@ -11,6 +11,7 @@ use App\Models\Cart;
 use Auth;
 use App\Models\Order;
 use App\Models\Stock;
+use App\Models\Company;
 
 class SaleController extends Controller
 {
@@ -88,7 +89,8 @@ class SaleController extends Controller
     public function printOrder($reg){
         $order = Order::where('reg', $reg)->orderBy('id', 'desc')->firstOrFail();        
         $cart = Cart::where('reg', $reg)->get();
-        return view('print.print', compact('order','cart'));
+        $company = Company::all();
+        return view('print.print', compact('order','cart','company'));
     }
 
     public function dueCollection(Request $request, $reg){

@@ -37,8 +37,9 @@
 <body>
 
     <div class="invoice-box">
-        <h1 style="text-align:center;">Abir Bekare & Foods</h1>
-        <p style="text-align:center;">House # 02, Road # 11, Sector # 6, Uttara, Dhaka-1230</p>
+        <h1 style="text-align:center;">{{$company[0]->name}}</h1>
+        <p style="text-align:center;">{{$company[0]->address}}</p>
+        <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
         <h3 style="text-align:center;">Total Order List</h3>
         <p><mark>Note: All company info get from database company info table.</mark></p>
         <hr>

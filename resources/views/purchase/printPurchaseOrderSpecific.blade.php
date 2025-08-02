@@ -41,8 +41,9 @@
 <body>
 
     <div class="invoice-header">
-        <h2>Abir Pharmacy</h2>
-        <p>House #02, Road #11, Sector #6, Uttara, Dhaka-1230</p>
+        <h1 style="text-align:center;">{{$company[0]->name}}</h1>
+        <p style="text-align:center;">{{$company[0]->address}}</p>
+        <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
         <h4>Order Invoice</h4>
         <h5>Date: {{$order->order_date}}</h5>
     </div><hr>

@@ -56,8 +56,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($credentials, $remember)) {
             $userId = Auth::guard('admin')->id();
             $username = Auth::guard('admin')->user()->name;
-            $branch = Auth::guard('admin')->user()->branch;
-            return redirect('/home')->with('success', 'Welcome back, ' . $username);
+            return redirect('/')->with('success', 'Welcome back, ' . $username);
         }
 
         return redirect()->back()->with('error', 'Invalid email or password. Please try again!');

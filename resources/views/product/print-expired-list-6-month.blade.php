@@ -50,8 +50,9 @@
 <body>
 
     <div class="invoice-header">
-        <h2>Abir Pharmacy</h2>
-        <p>House #02, Road #11, Sector #6, Uttara, Dhaka-1230</p>
+        <h1 style="text-align:center;">{{$company[0]->name}}</h1>
+        <p style="text-align:center;">{{$company[0]->address}}</p>
+        <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
         <h4>Expired List on 180 days.</h4>
     </div><hr>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">

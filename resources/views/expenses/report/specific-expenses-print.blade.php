@@ -191,21 +191,14 @@
     <!-- Header -->
     <div class="invoice-header text-center">
       <div class="company-info">
-        <h2>Abir Pharmacy</h2>
-        <p>House #02, Road #11, Sector #6, Uttara, Dhaka-1230</p>
-        <p class="small-muted"><em>All company info pulled from <strong>company_info</strong> table.</em></p>
+        <h1 style="text-align:center;">{{$company[0]->name}}</h1>
+        <p style="text-align:center;">{{$company[0]->address}}</p>
+        <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
       </div>
 
       <div class="qr-box">
         <span class="label">QR Code</span>
         <div class="qr-placeholder">QR</div>
-      </div>
-
-      <div class="w-100 text-center">
-        <div class="report-title">Expenses Print</div>
-        <div class="note mt-2">
-          <strong>Note:</strong> সমস্ত কোম্পানির তথ্য ডাটাবেজের <code>company_info</code> টেবিল থেকে নেওয়া হয়েছে।
-        </div>
       </div>
     </div>
 

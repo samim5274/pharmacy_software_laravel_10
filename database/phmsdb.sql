@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2025 at 02:11 PM
+-- Generation Time: Aug 02, 2025 at 08:22 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -141,7 +141,11 @@ INSERT INTO `carts` (`id`, `reg`, `date`, `user_id`, `medicine_id`, `qty`, `unit
 (43, 20250801010012, '2025-08-01', 1, 25, 12, 25, 300, '2026-07-27', '2025-06-27', '1', '2025-07-31 23:00:37', '2025-07-31 23:01:16'),
 (44, 20250801010012, '2025-08-01', 1, 14, 18, 5, 90, '2026-07-27', '2025-03-27', '1', '2025-07-31 23:00:50', '2025-07-31 23:01:31'),
 (45, 20250801010013, '2025-08-01', 1, 22, 25, 12, 300, '2027-07-27', '2025-02-27', '1', '2025-07-31 23:33:07', '2025-07-31 23:33:17'),
-(46, 20250801010013, '2025-08-01', 1, 31, 5, 200, 1000, '2025-11-25', '2025-07-31', '1', '2025-07-31 23:33:08', '2025-07-31 23:33:15');
+(46, 20250801010013, '2025-08-01', 1, 31, 5, 200, 1000, '2025-11-25', '2025-07-31', '1', '2025-07-31 23:33:08', '2025-07-31 23:33:15'),
+(47, 20250801010014, '2025-08-01', 1, 31, 1, 200, 200, '2025-11-25', '2025-07-31', '1', '2025-08-01 06:27:48', '2025-08-01 06:27:48'),
+(48, 20250802010015, '2025-08-02', 1, 25, 1, 25, 25, '2026-07-27', '2025-06-27', '1', '2025-08-01 23:28:55', '2025-08-01 23:28:55'),
+(49, 20250802010016, '2025-08-02', 1, 31, 1, 200, 200, '2025-11-25', '2025-07-31', '1', '2025-08-01 23:29:58', '2025-08-01 23:29:58'),
+(50, 20250802010017, '2025-08-02', 1, 31, 1, 200, 200, '2025-11-25', '2025-07-31', '1', '2025-08-01 23:33:53', '2025-08-01 23:33:53');
 
 -- --------------------------------------------------------
 
@@ -180,6 +184,30 @@ INSERT INTO `categories` (`id`, `name`, `description`, `created_at`, `updated_at
 (16, 'Herbal', 'Plant-based or natural medicine', '2025-07-27 00:27:57', '2025-07-27 00:27:57'),
 (17, 'Homeopathic', 'Alternative medicine system', '2025-07-27 00:27:57', '2025-07-27 00:27:57'),
 (18, 'Others', 'Other categories not listed above', '2025-07-27 00:27:57', '2025-07-27 00:27:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` text DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `name`, `address`, `email`, `phone`, `website`, `created_at`, `updated_at`) VALUES
+(1, 'Abid Pharmacy Ltd', 'House #02, Road #11, Sector #6, Uttara, Dhaka-1230, Bangladesh', 'info@example.com', '01762164746', 'https://example.com', '2025-08-01 23:17:53', '2025-08-01 23:17:53');
 
 -- --------------------------------------------------------
 
@@ -245,7 +273,8 @@ INSERT INTO `expenses` (`id`, `catId`, `subcatId`, `userId`, `date`, `amount`, `
 (12, 9, 25, 1, '2025-08-01', 5000, 'N/A', '2025-08-01 05:48:10', '2025-08-01 05:48:10'),
 (13, 9, 26, 1, '2025-08-01', 200, 'N/A', '2025-08-01 05:48:18', '2025-08-01 05:48:18'),
 (14, 9, 27, 1, '2025-08-01', 1200, 'N/A', '2025-08-01 05:48:29', '2025-08-01 05:48:29'),
-(15, 9, 28, 1, '2025-08-01', 500, 'N/A', '2025-08-01 05:48:37', '2025-08-01 05:48:37');
+(15, 9, 28, 1, '2025-08-01', 500, 'N/A', '2025-08-01 05:48:37', '2025-08-01 05:48:37'),
+(16, 2, 5, 1, '2025-08-02', 500, 'N/A', '2025-08-02 00:21:01', '2025-08-02 00:21:01');
 
 -- --------------------------------------------------------
 
@@ -299,7 +328,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (41, '2025_07_27_105121_create_purchasereturnorders_table', 2),
 (42, '2025_08_01_062928_create_excategories_table', 3),
 (43, '2025_08_01_062948_create_subexcategories_table', 3),
-(44, '2025_08_01_091727_create_expenses_table', 4);
+(44, '2025_08_01_091727_create_expenses_table', 4),
+(45, '2025_08_02_051037_create_companies_table', 5);
 
 -- --------------------------------------------------------
 
@@ -340,7 +370,11 @@ INSERT INTO `orders` (`id`, `date`, `user_id`, `reg`, `total`, `discount`, `vat`
 (10, '2025-07-31', 1, 20250731010010, 1246, 3, 187, 1430, 1430, 0, 2, '2025-07-30 23:18:27', '2025-07-30 23:18:27'),
 (11, '2025-07-31', 1, 20250731010011, 620, 13, 93, 700, 500, 200, 3, '2025-07-30 23:26:08', '2025-07-30 23:26:08'),
 (12, '2025-08-01', 1, 20250801010012, 590, 9, 89, 670, 670, 0, 2, '2025-07-31 23:01:39', '2025-07-31 23:01:39'),
-(13, '2025-08-01', 1, 20250801010013, 1300, 5, 195, 1490, 1000, 490, 3, '2025-07-31 23:33:24', '2025-07-31 23:33:24');
+(13, '2025-08-01', 1, 20250801010013, 1300, 5, 195, 1490, 1000, 490, 3, '2025-07-31 23:33:24', '2025-07-31 23:33:24'),
+(14, '2025-08-01', 1, 20250801010014, 200, 0, 0, 200, 200, 0, 2, '2025-08-01 06:27:52', '2025-08-01 06:27:52'),
+(15, '2025-08-02', 1, 20250802010015, 25, 4, 4, 25, 25, 0, 2, '2025-08-01 23:29:07', '2025-08-01 23:29:07'),
+(16, '2025-08-02', 1, 20250802010016, 200, 0, 0, 200, 200, 0, 1, '2025-08-01 23:30:04', '2025-08-01 23:41:34'),
+(17, '2025-08-02', 1, 20250802010017, 200, 10, 30, 220, 220, 0, 2, '2025-08-01 23:34:33', '2025-08-01 23:34:33');
 
 -- --------------------------------------------------------
 
@@ -413,11 +447,11 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `genericName`, `brand_id`, `category_id`, `purchase_price`, `price`, `stock`, `manufacture_date`, `expiry_date`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Napa', 'Paracetamol', 1, 1, 3, 5, 494, '2025-04-27', '2026-07-27', 'Used for fever and mild pain relief', '2025-07-27 00:27:57', '2025-07-30 05:14:24'),
-(2, 'Nurofen', 'Ibuprofen', 2, 1, 1, 2, 565, '2025-05-27', '2027-07-27', 'Pain, inflammation, and fever relief', '2025-07-27 00:27:57', '2025-07-30 05:14:27'),
-(3, 'Amoxil', 'Amoxicillin', 3, 2, 3, 5, 476, '2025-06-27', '2026-07-27', 'Antibiotic for bacterial infections', '2025-07-27 00:27:57', '2025-07-30 05:14:30'),
+(2, 'Nurofen', 'Ibuprofen', 2, 1, 1, 2, 575, '2025-05-27', '2027-07-27', 'Pain, inflammation, and fever relief', '2025-07-27 00:27:57', '2025-08-02 00:10:51'),
+(3, 'Amoxil', 'Amoxicillin', 3, 2, 3, 5, 486, '2025-06-27', '2026-07-27', 'Antibiotic for bacterial infections', '2025-07-27 00:27:57', '2025-08-02 00:10:54'),
 (4, 'Azimax', 'Azithromycin', 3, 2, 15, 20, 360, '2025-03-27', '2027-03-27', 'Used to treat various infections', '2025-07-27 00:27:57', '2025-07-29 00:05:11'),
 (5, 'Glucophage', 'Metformin', 4, 3, 2, 3, 306, '2025-06-27', '2027-07-27', 'Used for Type 2 diabetes management', '2025-07-27 00:27:57', '2025-07-29 22:28:35'),
-(6, 'Why', 'Recent', 3, 1, 15, 20, 457, '2025-06-19', '2027-01-16', 'Everybody wind because new throw box read.', '2025-07-27 00:27:57', '2025-07-30 22:17:13'),
+(6, 'Why', 'Recent', 3, 1, 15, 20, 467, '2025-06-19', '2027-01-16', 'Everybody wind because new throw box read.', '2025-07-27 00:27:57', '2025-08-02 00:10:57'),
 (7, 'See', 'Wife', 1, 2, 22, 29, 180, '2025-05-25', '2026-06-25', 'Artist church professor but interview see hard word.', '2025-07-27 00:27:57', '2025-07-30 06:28:11'),
 (8, 'Ask', 'Detail', 2, 4, 30, 40, 13, '2025-02-25', '2026-05-17', 'Less time nothing reflect any.', '2025-07-27 00:27:57', '2025-07-30 22:17:10'),
 (9, 'Admit', 'Research', 5, 2, 30, 43, 178, '2025-05-13', '2026-06-19', 'High tough nation they actually.', '2025-07-27 00:27:57', '2025-07-30 06:28:05'),
@@ -436,13 +470,13 @@ INSERT INTO `products` (`id`, `name`, `genericName`, `brand_id`, `category_id`, 
 (22, 'Lasix', 'Furosemide', 1, 1, 10, 12, 135, '2025-02-27', '2027-07-27', 'Diuretic for fluid retention.', '2025-07-27 00:27:57', '2025-07-31 23:33:17'),
 (23, 'Synthroid', 'Levothyroxine', 2, 1, 13, 17, 90, '2025-04-27', '2028-07-27', 'Used for thyroid hormone replacement.', '2025-07-27 00:27:57', '2025-07-30 23:26:01'),
 (24, 'Coumadin', 'Warfarin', 3, 1, 11, 20, 30, '2025-05-27', '2027-07-27', 'Blood thinner to prevent clots.', '2025-07-27 00:27:57', '2025-07-30 23:26:00'),
-(25, 'Ambien', 'Zolpidem', 4, 1, 14, 25, 22, '2025-06-27', '2026-07-27', 'Used for short-term insomnia.', '2025-07-27 00:27:57', '2025-07-31 23:01:16'),
+(25, 'Ambien', 'Zolpidem', 4, 1, 14, 25, 21, '2025-06-27', '2026-07-27', 'Used for short-term insomnia.', '2025-07-27 00:27:57', '2025-08-01 23:28:55'),
 (26, 'Diflucan', 'Fluconazole', 5, 2, 21, 30, 50, '2025-03-27', '2027-07-27', 'Antifungal medication.', '2025-07-27 00:27:57', '2025-07-29 22:32:59'),
 (27, 'Motrin', 'Ibuprofen', 1, 1, 5, 9, 185, '2025-04-27', '2026-07-27', 'Pain relief and anti-inflammatory.', '2025-07-27 00:27:57', '2025-07-29 22:32:57'),
 (28, 'Plavix', 'Clopidogrel', 2, 1, 23, 28, 106, '2025-05-27', '2028-07-27', 'Prevents blood clots.', '2025-07-27 00:27:57', '2025-07-29 22:32:55'),
 (29, 'Zoloft', 'Sertraline', 3, 1, 15, 22, 90, '2025-06-27', '2027-07-27', 'Used for depression and anxiety.', '2025-07-27 00:27:57', '2025-07-30 23:18:15'),
 (30, 'Keflex', 'Cephalexin', 4, 2, 13, 18, 165, '2025-05-27', '2027-07-27', 'Antibiotic for infections.', '2025-07-27 00:27:57', '2025-07-30 23:18:12'),
-(31, 'Xema 150g', 'xema', 2, 5, 170, 200, 7, '2025-07-31', '2025-11-25', 'N/A', '2025-07-30 22:35:30', '2025-07-31 23:33:15');
+(31, 'Xema 150g', 'xema', 2, 5, 170, 200, 5, '2025-07-31', '2025-11-25', 'N/A', '2025-07-30 22:35:30', '2025-08-01 23:41:34');
 
 -- --------------------------------------------------------
 
@@ -493,7 +527,10 @@ INSERT INTO `purchasecarts` (`id`, `date`, `user_id`, `chalan_reg`, `medicine_id
 (65, '2025-07-30', 1, 20250730010005, 3, 10, 10, 0, 1, 'Ordered', 3, 5, 30, '2025-07-30 04:52:04', '2025-07-30 05:14:30'),
 (66, '2025-07-30', 1, 20250730010006, 9, 10, 10, 0, 1, 'Ordered', 30, 43, 300, '2025-07-30 06:27:46', '2025-07-30 06:28:05'),
 (67, '2025-07-30', 1, 20250730010006, 8, 10, 10, 0, 1, 'Ordered', 30, 40, 300, '2025-07-30 06:27:47', '2025-07-30 06:28:08'),
-(68, '2025-07-30', 1, 20250730010006, 7, 10, 10, 0, 1, 'Ordered', 22, 29, 220, '2025-07-30 06:27:47', '2025-07-30 06:28:11');
+(68, '2025-07-30', 1, 20250730010006, 7, 10, 10, 0, 1, 'Ordered', 22, 29, 220, '2025-07-30 06:27:47', '2025-07-30 06:28:11'),
+(69, '2025-08-02', 1, 20250802010007, 2, 10, 10, 0, 1, 'Ordered', 1, 2, 10, '2025-08-01 23:59:45', '2025-08-02 00:10:51'),
+(70, '2025-08-02', 1, 20250802010007, 3, 10, 10, 0, 1, 'Ordered', 3, 5, 30, '2025-08-01 23:59:46', '2025-08-02 00:10:54'),
+(71, '2025-08-02', 1, 20250802010007, 6, 10, 10, 0, 1, 'Ordered', 15, 20, 150, '2025-08-01 23:59:46', '2025-08-02 00:10:57');
 
 -- --------------------------------------------------------
 
@@ -529,7 +566,8 @@ INSERT INTO `purchaseorders` (`id`, `order_date`, `delivary_date`, `user_id`, `s
 (16, '2025-07-29', '2025-07-29', 1, 2, 20250729010003, 3200, 30, 480, 3650, 3650, 0, 4, '2025-07-29 00:04:56', '2025-07-29 00:05:28'),
 (17, '2025-07-29', '2025-07-29', 1, 3, 20250729010004, 4800, 0, 0, 4800, 0, 4800, 3, '2025-07-29 00:05:47', '2025-07-29 00:05:52'),
 (18, '2025-07-30', '2025-07-30', 1, 2, 20250730010005, 70, 1, 11, 80, 80, 0, 4, '2025-07-30 04:52:12', '2025-07-30 05:14:47'),
-(19, '2025-07-30', '2025-07-30', 1, 2, 20250730010006, 820, 3, 123, 940, 940, 0, 4, '2025-07-30 06:27:56', '2025-07-30 06:28:32');
+(19, '2025-07-30', '2025-07-30', 1, 2, 20250730010006, 820, 3, 123, 940, 940, 0, 4, '2025-07-30 06:27:56', '2025-07-30 06:28:32'),
+(20, '2025-08-02', '2025-08-02', 1, 2, 20250802010007, 190, 0, 0, 190, 0, 190, 2, '2025-08-02 00:00:09', '2025-08-02 00:10:58');
 
 -- --------------------------------------------------------
 
@@ -666,7 +704,14 @@ INSERT INTO `stocks` (`id`, `reg`, `date`, `medicine_id`, `stockIn`, `stockOut`,
 (150, 20250801010012, '2025-08-01', 25, 0, 12, 'Sale', 1, '2025-07-31 23:00:37', '2025-07-31 23:01:16'),
 (151, 20250801010012, '2025-08-01', 14, 0, 18, 'Sale', 1, '2025-07-31 23:00:50', '2025-07-31 23:01:31'),
 (152, 20250801010013, '2025-08-01', 22, 0, 25, 'Sale', 1, '2025-07-31 23:33:07', '2025-07-31 23:33:17'),
-(153, 20250801010013, '2025-08-01', 31, 0, 5, 'Sale', 1, '2025-07-31 23:33:08', '2025-07-31 23:33:15');
+(153, 20250801010013, '2025-08-01', 31, 0, 5, 'Sale', 1, '2025-07-31 23:33:08', '2025-07-31 23:33:15'),
+(154, 20250801010014, '2025-08-01', 31, 0, 1, 'Sale', 1, '2025-08-01 06:27:48', '2025-08-01 06:27:48'),
+(155, 20250802010015, '2025-08-02', 25, 0, 1, 'Sale', 1, '2025-08-01 23:28:55', '2025-08-01 23:28:55'),
+(156, 20250802010016, '2025-08-02', 31, 0, 1, 'Sale', 2, '2025-08-01 23:29:58', '2025-08-01 23:41:34'),
+(157, 20250802010017, '2025-08-02', 31, 0, 1, 'Sale', 1, '2025-08-01 23:33:53', '2025-08-01 23:33:53'),
+(158, 20250802010007, '2025-08-02', 2, 10, 0, 'Purchase', 0, '2025-08-02 00:10:51', '2025-08-02 00:10:51'),
+(159, 20250802010007, '2025-08-02', 3, 10, 0, 'Purchase', 0, '2025-08-02 00:10:54', '2025-08-02 00:10:54'),
+(160, 20250802010007, '2025-08-02', 6, 10, 0, 'Purchase', 0, '2025-08-02 00:10:57', '2025-08-02 00:10:57');
 
 -- --------------------------------------------------------
 
@@ -790,6 +835,13 @@ ALTER TABLE `carts`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `companies_email_unique` (`email`);
 
 --
 -- Indexes for table `excategories`
@@ -935,13 +987,19 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+ALTER TABLE `companies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `excategories`
@@ -953,7 +1011,7 @@ ALTER TABLE `excategories`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -965,13 +1023,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -989,13 +1047,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `purchasecarts`
 --
 ALTER TABLE `purchasecarts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `purchaseorders`
 --
 ALTER TABLE `purchaseorders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `purchasereturnorders`
@@ -1013,7 +1071,7 @@ ALTER TABLE `purchasereturns`
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `subexcategories`

@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Company;
 
 class ProductController extends Controller
 {
@@ -82,10 +83,11 @@ class ProductController extends Controller
 
     public function printExpiredList(){
         $date = Carbon::now()->format('Ymd');
+        $company = Company::all();
         $product = Product::where('expiry_date', '<=', $date)->paginate(20);
         $total = Product::where('expiry_date', '<=', $date)->sum('price');
         $stock = Product::where('expiry_date', '<=', $date)->sum('stock');
-        return view('product.print-expired-list', compact('product','total', 'stock'));
+        return view('product.print-expired-list', compact('product','company','total', 'stock'));
     }
 
     public function ExpritedListSixMont(){
@@ -98,9 +100,10 @@ class ProductController extends Controller
 
     public function printExpiredListSixMonth(){
         $date = Carbon::today()->addDays(180)->format('Ymd');
+        $company = Company::all();
         $product = Product::where('expiry_date', '<=', $date)->paginate(20);
         $total = Product::where('expiry_date', '<=', $date)->sum('price');
         $stock = Product::where('expiry_date', '<=', $date)->sum('stock');
-        return view('product.print-expired-list-6-month', compact('product','total', 'stock'));
+        return view('product.print-expired-list-6-month', compact('product','company','total', 'stock'));
     }
 }
