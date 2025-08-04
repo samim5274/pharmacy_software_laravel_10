@@ -15,6 +15,7 @@ use App\Http\Controllers\Purchase\PurchaseReportController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Expenses\ExpensesController;
+use App\Http\Controllers\Stock\StockController;
 
 Auth::routes();
 
@@ -132,4 +133,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/add-new-category', [ExpensesController::class, 'addExCategory']);
     Route::post('/add-new-sub-category', [ExpensesController::class, 'addExSubCategory']);
     Route::get('/print-daily-expenses', [ExpensesController::class, 'printDailyExpenses']);
+
+    Route::get('/total-stock', [StockController::class, 'totalStock'])->name('total.stock.view');
+    Route::get('/print/total/stock/report', [StockController::class, 'printStock']);
+    Route::get('/category-stock', [StockController::class, 'categoryStock'])->name('category.wise.stock.report.view');
+    Route::get('search-category-stock-report', [StockController::class, 'filterCategoryStock']);
+    Route::get('/brank-stock', [StockController::class, 'brandStock'])->name('brand.wise.stock.view');
+    Route::get('/search-brand-stock-report', [StockController::class, 'brandFilterStock']);
+    Route::get('/product-stock', [StockController::class, 'productStock'])->name('product.stock.report');
+    Route::get('/search-product-stock-report', [StockController::class, 'filterProductStock']);
 });

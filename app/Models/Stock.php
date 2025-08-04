@@ -18,4 +18,8 @@ class Stock extends Model
         'remark',
         'status',
     ];
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'medicine_id', 'id');
+    }
 }

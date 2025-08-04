@@ -41,4 +41,8 @@ class Product extends Model
     public function purchaseReturnCart(){
         return $this->hasMany(Purchasereturn::class, 'product_id','id');
     }
+
+    public function stock(){
+        return $this->hasMany(Stock::class, 'medicine_id', 'id');
+    }
 }

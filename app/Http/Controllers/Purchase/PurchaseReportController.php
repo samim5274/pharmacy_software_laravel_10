@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Purchase;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 use Auth;
 use App\Models\Purchasecart;

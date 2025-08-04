@@ -54,7 +54,7 @@
                     <i class="fas fa-angle-down"></i>
                 </a>
                 <ul class="collapse list-unstyled ps-4 mt-1">
-                    <li><a href="{{ url('/cart-view') }}"><i class="far fa-dot-circle me-2"></i>Cart</a></li>
+                    <li><a href="{{ url('/cart-view') }}"><i class="far fa-dot-circle me-2"></i>Cart / Sale</a></li>
                     <li><a href="{{ url('/order-list') }}"><i class="far fa-dot-circle me-2"></i>Order</a></li>
                     <li><a href="{{ url('/return-list') }}"><i class="far fa-dot-circle me-2"></i>Return</a></li>
                 </ul>
@@ -77,6 +77,8 @@
                     <li><a href="{{ url('/date-wise-product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Report</a></li>
                     <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
                     <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
+                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>VAT</a></li>
+                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>Profit</a></li>
                 </ul>
             </li>
 
@@ -134,6 +136,22 @@
                     <li><a href="{{ url('/purchase-payment-report') }}"><i class="far fa-dot-circle me-2"></i>Payment Complete</a></li>
                     <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
                     <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fa-solid fa-layer-group me-3"></i>
+                        <span>Stock</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{url('/total-stock')}}"><i class="far fa-dot-circle me-2"></i>Total Stock</a></li>
+                    <li><a href="{{url('/category-stock')}}"><i class="far fa-dot-circle me-2"></i>Category Stock</a></li>
+                    <li><a href="{{url('/brank-stock')}}"><i class="far fa-dot-circle me-2"></i>Brand Stock</a></li>
+                    <li><a href="{{url('/product-stock')}}"><i class="far fa-dot-circle me-2"></i>Product Stock</a></li>
                 </ul>
             </li>
 
