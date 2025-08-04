@@ -100,6 +100,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/print/complete/purchase/order', [PurchaseController::class, 'printCompletePurchaseOrder']);
     Route::get('/print/payment/order/list', [PurchaseController::class, 'printPaymentList']);
     Route::get('/print/cancel/order/list', [PurchaseController::class, 'printCancelOrder']);
+    Route::get('/purchase-due', [PurchaseController::class, 'purchaseDue'])->name('purchase.due.list.and.collection.view');
+    Route::post('/purchase-due-payment', [PurchaseController::class, 'purchaseDuePayment']);
+    Route::get('/print/purchase/due/list', [PurchaseController::class, 'printPurchaseDueList']);
 
     Route::get('/purchase-return', [PurchaseReturnController::class, 'purchaseReturn'])->name('purchase.return.view');
     Route::get('/find-purchase-medicine/{reg}', [PurchaseReturnController::class, 'findPurchaseMedicine'])->name('view.purchase.order.medicine');
@@ -122,6 +125,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/purchase-return-report', [PurchaseReportController::class, 'returnPurchaseReport']);
     Route::get('/print/purchase/order/return/report', [PurchaseReportController::class, 'printReturnPurchaseReport']);
     Route::get('/search-purchase-return', [PurchaseReportController::class, 'searchPurchaseReturnReport']);
+    Route::get('/purchase-supplier-report', [PurchaseReportController::class, 'SupplierReport']);
+    Route::get('/print/supplier/purchase/report', [PurchaseReportController::class, 'printSuppierReport']);
+    Route::get('/search-supplier-purchase', [PurchaseReportController::class, 'findSupplierReport']);
 
     Route::get('/expenses', [ExpensesController::class, 'expenses'])->name('expenses.view');
     Route::get('/getSubCategory/{id}', [ExpensesController::class, 'getSubCategory']);

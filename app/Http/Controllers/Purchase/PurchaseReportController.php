@@ -249,4 +249,56 @@ class PurchaseReportController extends Controller
         }
         return view('purchase.report.return-total-purchase-report', compact('purchase','total','discount','vat','payable','pay','due'));
     }
+
+    public function SupplierReport(){
+        $start = Carbon::now()->format('Ymd');
+        $end = Carbon::now()->format('Ymd');
+        // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment', '5 = purchase return]
+        $purchase = Purchaseorder::whereBetween('order_date', [$start, $end])->paginate(20); 
+        $total = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('total');
+        $discount = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('discount');
+        $vat = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('vat');
+        $payable = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('payable');
+        $pay = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('pay');
+        $due = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('due');
+        $supplier = Supplier::all();
+        return view('purchase.report.supplier-total-purchase-report', compact('purchase','total','discount','vat','payable','pay','due','supplier'));
+    }
+
+    public function printSuppierReport(){
+        $start = Carbon::now()->format('Ymd');
+        $end = Carbon::now()->format('Ymd');
+        // ['1 = order', '2 = delivery', '3 = cancelled', '4 = bill payment', '5 = purchase return]
+        $purchase = Purchaseorder::whereBetween('order_date', [$start, $end])->paginate(20); 
+        $total = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('total');
+        $discount = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('discount');
+        $vat = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('vat');
+        $payable = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('payable');
+        $pay = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('pay');
+        $due = Purchaseorder::whereBetween('order_date', [$start, $end])->sum('due');
+        $company = Company::all();
+        return view('purchase.print.print-supplier-total-purchase-report', compact('purchase','total','discount','vat','payable','pay','due','company'));
+    }
+
+    public function findSupplierReport(Request $request){
+        $request->validate([
+            'cbxSupplier' => 'required',
+        ]);
+        $start = $request->input('dtpStartDate','');
+        $end = $request->input('dtpEndDate','');
+        $supply_id = $request->input('cbxSupplier','');
+        $supplier = Supplier::all();
+        $purchase = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->paginate(20); 
+        $total = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('total');
+        $discount = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('discount');
+        $vat = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('vat');
+        $payable = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('payable');
+        $pay = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('pay');
+        $due = Purchaseorder::where('supplier_id', $supply_id)->whereBetween('order_date', [$start, $end])->sum('due');
+        $company = Company::all();
+        if($request->has('print')){
+            return view('purchase.print.print-supplier-total-purchase-report', compact('purchase','total','discount','vat','payable','pay','due','company'));
+        }
+        return view('purchase.report.supplier-total-purchase-report', compact('purchase','total','discount','vat','payable','pay','due','supplier'));
+    }
 }

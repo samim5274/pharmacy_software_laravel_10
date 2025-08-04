@@ -438,4 +438,71 @@ class PurchaseController extends Controller
         $company = Company::all();
         return view('purchase.print.print-cancel-order-list', compact('order','company','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
+
+    public function purchaseDue(){
+        $order = Purchaseorder::where('due','!=', 0)->paginate(20);
+        $total = Purchaseorder::where('due','!=', 0)->sum('total');
+        $discount = Purchaseorder::where('due','!=', 0)->sum('discount');
+        $payable = Purchaseorder::where('due','!=', 0)->sum('payable');
+        $pay = Purchaseorder::where('due','!=', 0)->sum('pay');
+        $due = Purchaseorder::where('due','!=', 0)->sum('due');
+        $vat = Purchaseorder::where('due','!=', 0)->sum('vat');
+        // dd($order);
+        return view('purchase.purchase-due-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
+    }
+
+    public function purchaseDuePayment(Request $request){
+        $request->validate([
+            'txtDueAmount' => 'required',
+            'txtChalanId' => 'required',
+            'txtDiscount' => 'required'
+        ]);
+
+        $reg = $request->input('txtChalanId', '');
+        $newPay = $request->input('txtDueAmount', '');
+        $newDiscount = $request->input('txtDiscount', '');
+
+        $order = Purchaseorder::where('chalan_reg', $reg)->first();
+
+        if (!$order) {
+            return redirect()->back()->with('warning', 'This item is not available right now.');
+        }
+
+        $oldDue = $order->due;
+        $newPayable = $order->payable - $newDiscount;
+        
+        if($newDiscount > $oldDue) {
+            return redirect()->back()->with('warning', 'Discount more then due. It is not possible.');
+        } else {
+            $order->discount += $newDiscount;
+            $order->payable -= $newDiscount;
+            $order->payable = $newPayable;
+
+            if($newPayable <= $newPay || $oldDue <= $newPay) {
+                $order->pay = $newPayable;
+            } else {
+                $order->pay += $newPay;
+            }
+
+            if($order->pay == $order->payable) {
+                $order->due = 0;
+            } else {
+                $order->due -= ($newPay + $newDiscount);
+            }
+            $order->update();
+            return redirect()->back()->with('success', 'Due payment successfully done!');
+        }
+    }
+
+    public function printPurchaseDueList(){
+        $order = Purchaseorder::where('due','!=', 0)->paginate(20);
+        $total = Purchaseorder::where('due','!=', 0)->sum('total');
+        $discount = Purchaseorder::where('due','!=', 0)->sum('discount');
+        $payable = Purchaseorder::where('due','!=', 0)->sum('payable');
+        $pay = Purchaseorder::where('due','!=', 0)->sum('pay');
+        $due = Purchaseorder::where('due','!=', 0)->sum('due');
+        $vat = Purchaseorder::where('due','!=', 0)->sum('vat');
+        $company = Company::all();
+        return view('purchase.print.print-purchase-due-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','company'));
+    }
 }

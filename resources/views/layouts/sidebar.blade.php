@@ -117,6 +117,7 @@
                     <li><a href="{{ url('/purchase-order-list') }}"><i class="far fa-dot-circle me-2"></i>Order List</a></li>
                     <li><a href="{{ url('/complete-purchase-order') }}"><i class="far fa-dot-circle me-2"></i>Complete Order</a></li>
                     <li><a href="{{ url('/payment-list') }}"><i class="far fa-dot-circle me-2"></i>Payment</a></li>
+                    <li><a href="{{ url('/purchase-due') }}"><i class="far fa-dot-circle me-2"></i>Due List & Payment</a></li>
                     <li><a href="{{ url('/cancel-purchase-order-list') }}"><i class="far fa-dot-circle me-2"></i>Cancel List</a></li>
                     <li><a href="{{ url('/purchase-return') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
                 </ul>
@@ -136,6 +137,7 @@
                     <li><a href="{{ url('/purchase-payment-report') }}"><i class="far fa-dot-circle me-2"></i>Payment Complete</a></li>
                     <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
                     <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
+                    <li><a href="{{ url('/purchase-supplier-report') }}"><i class="far fa-dot-circle me-2"></i>Supplier Report</a></li>
                 </ul>
             </li>
 

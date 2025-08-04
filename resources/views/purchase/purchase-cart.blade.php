@@ -92,7 +92,9 @@
                             <p class="mb-0">No items in your cart.</p>
                         </div>
                     @endif
+                    @if($order->pay <= 0)
                     <a href="{{url('/purchase-order-cancel/'.$order->chalan_reg)}}" onclick="return confirm('Are you sure you want to cancel this order?')"><button type="button" class="btn btn-danger w-100"><span id="btnText"><h4 class="m-0">Cancel</h4></span></button></a>
+                    @endif
                 </div>
             </div>
         </div>
