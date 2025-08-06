@@ -14,6 +14,7 @@ use Auth;
 use App\Models\Order;
 use App\Models\Stock;
 use App\Models\Company;
+use App\Models\Admin;
 
 class SaleReportController extends Controller
 {
@@ -188,5 +189,118 @@ class SaleReportController extends Controller
 
         // dd($carts,$order);
         return view('sale.report.profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due','medicines','totalPurchaseByProduct'));
+    }
+
+    public function SaleProfitReport(){
+        $date = Carbon::now()->format('Ymd');
+        $order = Order::whereBetween('date', [$date, $date])->get();
+        $total = Order::whereBetween('date', [$date, $date])->sum('total');
+        $discount = Order::whereBetween('date', [$date, $date])->sum('discount');
+        $payable = Order::whereBetween('date', [$date, $date])->sum('payable');
+        $pay = Order::whereBetween('date', [$date, $date])->sum('pay');
+        $due = Order::whereBetween('date', [$date, $date])->sum('due');
+        $vat = Order::whereBetween('date', [$date, $date])->sum('vat');
+
+        $regs = $order->pluck('reg'); 
+        $result = [];
+        foreach($regs as $reg){
+            $carts = Cart::where('reg', $reg)->get();
+            $medicineIds = Cart::pluck('medicine_id')->unique();            
+            if ($carts->isNotEmpty()) {
+                $result[$reg] = $carts;
+                $medicines = Product::whereIn('id', $medicineIds)->get();
+            }           
+        }
+        // dd($result, $medicines);
+        return view('sale.report.sale-profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','result','medicines'));
+    }
+
+    public function filterSaleReportProfit(Request $request){
+        $start = $request->input('dtpStartDate','');
+        $end = $request->input('dtpEndDate','');
+
+        $order = Order::whereBetween('date', [$start, $end])->get();
+        $total = Order::whereBetween('date', [$start, $end])->sum('total');
+        $discount = Order::whereBetween('date', [$start, $end])->sum('discount');
+        $payable = Order::whereBetween('date', [$start, $end])->sum('payable');
+        $pay = Order::whereBetween('date', [$start, $end])->sum('pay');
+        $due = Order::whereBetween('date', [$start, $end])->sum('due');
+        $vat = Order::whereBetween('date', [$start, $end])->sum('vat');
+
+        $regs = $order->pluck('reg'); 
+        $result = [];
+        foreach($regs as $reg){
+            $carts = Cart::where('reg', $reg)->get();
+            $medicineIds = Cart::pluck('medicine_id')->unique();            
+            if ($carts->isNotEmpty()) {
+                $result[$reg] = $carts;
+                $medicines = Product::whereIn('id', $medicineIds)->get();
+            }           
+        }
+        $company = Company::all();
+        if($request->has('print')){
+            return view('sale.print.print-sale-profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','result','medicines','start','end', 'company'));
+        }
+        return view('sale.report.sale-profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','result','medicines'));
+    }
+
+    public function specificSaleProfitReport(){
+        $date = Carbon::now()->format('Ymd');
+        $order = Order::whereBetween('date', [$date, $date])->get();
+        $total = Order::whereBetween('date', [$date, $date])->sum('total');
+        $discount = Order::whereBetween('date', [$date, $date])->sum('discount');
+        $payable = Order::whereBetween('date', [$date, $date])->sum('payable');
+        $pay = Order::whereBetween('date', [$date, $date])->sum('pay');
+        $due = Order::whereBetween('date', [$date, $date])->sum('due');
+        $vat = Order::whereBetween('date', [$date, $date])->sum('vat');
+
+        $regs = $order->pluck('reg'); 
+        $result = [];
+        foreach($regs as $reg){
+            $carts = Cart::where('reg', $reg)->get();
+            $medicineIds = Cart::pluck('medicine_id')->unique();            
+            if ($carts->isNotEmpty()) {
+                $result[$reg] = $carts;
+                $medicines = Product::whereIn('id', $medicineIds)->get();
+            }           
+        }
+        return view('sale.report.sale-specific-profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','result','medicines'));
+    }
+
+    public function userSaleReport(){
+        $start = Carbon::now()->format('Ymd');
+        $end = Carbon::now()->format('Ymd');
+
+        $order = Order::whereBetween('date', [$start, $end])->paginate(20);
+        $total = Order::whereBetween('date', [$start, $end])->sum('total');
+        $discount = Order::whereBetween('date', [$start, $end])->sum('discount');
+        $payable = Order::whereBetween('date', [$start, $end])->sum('payable');
+        $pay = Order::whereBetween('date', [$start, $end])->sum('pay');
+        $due = Order::whereBetween('date', [$start, $end])->sum('due');
+        $vat = Order::whereBetween('date', [$start, $end])->sum('vat');
+        $user = Admin::all();
+        return view('sale.report.user-sale-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','user'));
+    }
+
+    public function filterUserSaleReport(Request $request){
+        $start = $request->input('dtpStartDate','');
+        $end = $request->input('dtpEndDate','');
+        $request->validate([
+            'cbxUser' => 'required',
+        ]);
+        $user = $request->input('cbxUser','');
+        $order = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->paginate(20);
+        $total = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('total');
+        $discount = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('discount');
+        $payable = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('payable');
+        $pay = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('pay');
+        $due = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('due');
+        $vat = Order::whereBetween('date', [$start, $end])->where('user_id', $user)->sum('vat');
+        $user = Admin::all();
+        $company = Company::all();
+        if($request->has('print')){
+            return view('sale.print.print-user-sale-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','user','start','end', 'company'));
+        }
+        return view('sale.report.user-sale-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','user'));
     }
 }

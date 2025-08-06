@@ -33,7 +33,6 @@
         <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
         <h3 style="text-align:center;">Date wise Product Sale Report</h3>
         <h5 style="text-align:center;">Start: {{$start}} & End: {{$end}}</h5>
-        <p><mark>Note: All company info get from database company info table.</mark></p>
         <hr>
         <div class="qrImg">
             QR-

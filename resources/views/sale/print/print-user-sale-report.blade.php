@@ -32,11 +32,8 @@
         <p style="text-align:center;">{{$company[0]->address}}</p>
         <p style="text-align:center;">Mobaile: {{$company[0]->phone}}  website: {{$company[0]->website}}</p>
         <h3 style="text-align:center;">Date wise Sale Report</h3>
-        <h5 style="text-align:center;">Start: {{$start}} & End: {{$end}}</h5>
+        <p style="text-align:center;">Start: {{$start}} & End: {{$end}}</p>
         <hr>
-        <div class="qrImg">
-            QR-
-        </div>
         <table class="table table-bordered table-striped " id="printableTable">
             <thead class="table-primary">
                 <tr>

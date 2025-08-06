@@ -77,8 +77,9 @@
                     <li><a href="{{ url('/date-wise-product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Report</a></li>
                     <li><a href="{{ url('/product-sale-report') }}"><i class="far fa-dot-circle me-2"></i>Product Sale</a></li>
                     <li><a href="{{ url('/sale-return-report') }}"><i class="far fa-dot-circle me-2"></i>Sale Return</a></li>
-                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>VAT</a></li>
-                    <li><a href="#"><i class="far fa-dot-circle me-2"></i>Profit</a></li>
+                    <li><a href="{{ url('/user-sale-report') }}"><i class="far fa-dot-circle me-2"></i>User Sale</a></li>
+                    <li><a href="{{ url('/sale-profit-report')}}"><i class="far fa-dot-circle me-2"></i>Profit</a></li>
+                    <li><a href="{{ url('/sale-profit-report-by-specified-order')}}"><i class="far fa-dot-circle me-2"></i>Specific Profit</a></li>
                 </ul>
             </li>
 
@@ -173,6 +174,21 @@
                     <span>Account Setting</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link d-flex align-items-center justify-content-between" href="#">
+                    <div>
+                        <i class="fa-solid fa-hand-holding-dollar me-3"></i>
+                        <span>Expenses Report</span>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="collapse list-unstyled ps-4 mt-1">
+                    <li><a href="{{ url('/expenses-report') }}"><i class="far fa-dot-circle me-2"></i>Total Expenses</a></li>
+                    <li><a href="{{ url('/category-expenses-report') }}"><i class="far fa-dot-circle me-2"></i>Category Expenses</a></li>
+                    <li><a href="{{ url('/sub-category-expenses-report') }}"><i class="far fa-dot-circle me-2"></i>Sub-category Expenses</a></li>
+                    <li><a href="{{ url('/user-expenses-report') }}"><i class="far fa-dot-circle me-2"></i>User Expenses Report</a></li>
+                </ul>
+            </li>
 
             <!-- Other Section -->
             <li class="nav-small-cap text-muted mt-4 mb-2">
@@ -193,9 +209,9 @@
                 </a>
             </li>
             <li class="sidebar-item mt-2">
-                <a class="sidebar-link d-flex align-items-center" href="#">
-                    <i class="fas fa-calendar-alt me-3"></i>
-                    <span>Other</span>
+                <a class="sidebar-link d-flex align-items-center" href="{{url('/login')}}">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-3"></i>
+                    <span>Logout</span>
                 </a>
             </li>
         </ul>

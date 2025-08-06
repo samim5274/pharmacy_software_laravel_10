@@ -15,6 +15,7 @@ use App\Http\Controllers\Purchase\PurchaseReportController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Expenses\ExpensesController;
+use App\Http\Controllers\Expenses\ExpensesReportController;
 use App\Http\Controllers\Stock\StockController;
 
 Auth::routes();
@@ -69,6 +70,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/filter-date-wise-product-report', [SaleReportController::class, 'dateWiseSaleProductReport']);
     Route::get('/sale-return-report', [SaleReportController::class, 'saleReturnReport'])->name('sale.return.report.view');
     Route::get('/filter-date-wise-sale-return-report', [SaleReportController::class, 'filterSaleReturnReport']);
+    Route::get('/sale-profit-report', [SaleReportController::class, 'SaleProfitReport'])->name('sale.report.profit.view');
+    Route::get('/filter-date-wise-sale-profit', [SaleReportController::class, 'filterSaleReportProfit']);
+    Route::get('/sale-profit-report-by-specified-order', [SaleReportController::class, 'specificSaleProfitReport'])->name('every.order.profit.report.view');
+    Route::get('/user-sale-report', [SaleReportController::class, 'userSaleReport'])->name('user.wise.sale.report');
+    Route::get('/filter-user-wise-sale-report', [SaleReportController::class, 'filterUserSaleReport']);
 
     Route::get('/order-list', [OrderController::class, 'orderList'])->name('order.list');
     Route::get('/print-all-order', [OrderController::class, 'printOrder']);
@@ -139,6 +145,16 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/add-new-category', [ExpensesController::class, 'addExCategory']);
     Route::post('/add-new-sub-category', [ExpensesController::class, 'addExSubCategory']);
     Route::get('/print-daily-expenses', [ExpensesController::class, 'printDailyExpenses']);
+
+    Route::get('/expenses-report', [ExpensesReportController::class, 'expensesReport'])->name('total.expenses.view');
+    Route::get('/filter-expenses-report', [ExpensesReportController::class, 'filterExpensesReport']);
+    Route::get('/print-total-expenses-report',[ExpensesReportController::class, 'printExpensesReport']);
+    Route::get('/category-expenses-report', [ExpensesReportController::class, 'categoryExpensesReport'])->name('category.wise.expenses.report.view');
+    Route::get('/filter-category-expenses-report', [ExpensesReportController::class, 'filterCategoryExpensesReport']);
+    Route::get('/sub-category-expenses-report', [ExpensesReportController::class, 'subCatExpense'])->name('sub-category.wise.report.view');
+    Route::get('/filter-sub-category-expenses-report', [ExpensesReportController::class, 'filterSubCatExpenseReport']);
+    Route::get('/user-expenses-report', [ExpensesReportController::class, 'userExpensesReport'])->name('user.wise.expenses.report');
+    Route::get('/filter-user-expenses-report', [ExpensesReportController::class, 'filterUserExpensesReport']);
 
     Route::get('/total-stock', [StockController::class, 'totalStock'])->name('total.stock.view');
     Route::get('/print/total/stock/report', [StockController::class, 'printStock']);
