@@ -33,15 +33,18 @@
                     <div class="col-lg-12">
                         <div class="card w-100">
                             <div class="card-body">
+                                <div class="py-4">  
+                                    <label for="search" class="form-label">Search</label>                                  
+                                    <input type="search" name="search" id="search" class="form-control" placeholder="Search by medicine name or generic name">
+                                </div>
                                 <div class="d-md-flex align-items-center">
                                     <div>
                                         <h4 class="card-title">Product Details</h4>
-                                    </div>
+                                    </div>                                    
                                     <div class="ms-auto">
                                         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                             <i class="fa-solid fa-calendar-plus me-1"></i> Add Medicine
-                                        </button>
-                                        
+                                        </button>                                        
                                     </div>
                                 </div>                                
                                 <div class="mt-4 mx-n6">
@@ -60,7 +63,8 @@
                                                 <th scope="col" class="px-0 text-muted text-end"> Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="searchData" id="content"></tbody>
+                                        <tbody class="allData">
                                             @foreach($product as $key => $val)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
@@ -195,6 +199,34 @@
     <script src="{{ asset('assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+    <!-- live search medicine -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $('#search').on('keyup', function() {
+            $value = $(this).val();
+            if($value) {
+                $('.allData').hide();
+                $('.searchData').show();
+            } else {
+                $('.allData').show();
+                $('.searchData').hide();
+            }
+            $.ajax({
+                type: 'get',
+                url: '{{URL::to("live-search-order")}}',
+                data:{'search':$value},
+
+                success:function(data) {
+                    console.log(data);
+                    $('#content').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Search AJAX error:', error);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

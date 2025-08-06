@@ -52,6 +52,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/expired-list-6-month', [ProductController::class, 'ExpritedListSixMont'])->name('expired.list.180.days.view');
     Route::get('/print-expired-list-6-month', [ProductController::class, 'printExpiredListSixMonth']);
     Route::get('/damage-product', [ProductController::class, 'damageProduct'])->name('damage.product.view');
+    Route::get('/live-search-order', [ProductController::class, 'liveSearchOrder']);
 
     Route::get('/cart-view', [CartController::class, 'cartView']);
     Route::get('/add-to-cart', [CartController::class, 'addCart']);

@@ -1,13 +1,17 @@
 <aside class="left-sidebar bg-light shadow-sm">
-    <div class="brand-logo d-flex align-items-center justify-content-between p-3 border-bottom">
-        <a href="{{ url('/') }}" class="text-nowrap logo-img">
-            <img src="assets/images/logos/main-icon.png" alt="Logo" width="40" />
-        </a>
-        <h5 class="m-0">Pharmacy Shop</h5>
-        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="fas fa-times fs-6"></i>
-        </div>
+    <div class="brand-logo d-flex align-items-center justify-content-between px-3 py-2 border-bottom bg-light">
+    <div class="d-flex align-items-center gap-2">
+        <!-- Logo (uncomment if needed) -->
+        <a href="{{ url('/') }}" class="logo-img d-inline-block">
+            <img src="assets/images/logos/main-icon.png" alt="Logo" width="36" height="36" class="img-fluid rounded" />
+        </a>       
+        <h5 class="mb-0 fw-semibold text-primary">Pharmacy Shop MIS</h5>
     </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+
 
     <nav class="sidebar-nav px-3 py-4" style="overflow-y: auto; height: calc(100vh - 70px);">
         <ul id="sidebarnav" class="list-unstyled">

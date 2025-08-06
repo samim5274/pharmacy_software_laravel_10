@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-between mt-4">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <a href="{{url('/edit-product-view')}}"><button type="button" class="btn btn-outline-secondary">Cancel</button></a>
                                         <button type="submit" class="btn btn-success">Edit Medicine</button>
                                     </div>
                                 </form>

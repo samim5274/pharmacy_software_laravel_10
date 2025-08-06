@@ -110,4 +110,35 @@ class ProductController extends Controller
     public function damageProduct(){
         return view('product.damage-product');
     }
+
+    public function liveSearchOrder(Request $request){
+        $output = "";
+
+        $product = Product::where('name', 'like', '%'.$request->search.'%')->orWhere('genericName', 'like', '%'.$request->search.'%')->get();
+
+        foreach($product as $key => $val) {
+            $edit = url('/edit-product/'.$val->id);
+            $output .= '
+            <tr>
+                <td>'.++$key.'</td>
+                <td class="px-0">
+                    <div class="d-flex align-items-center">                        
+                        <div class="ms-3">
+                            <a href="'.$edit.'"><h6 class="mb-0 fw-bolder">'.$val->name.'</h6></a>
+                            <span class="text-muted">'.$val->genericName.'</span>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-0">'.$val->manufacture_date.'</td>
+                <td class="px-0">'.$val->expiry_date.'</td>
+                <td class="px-0">'.$val->brand->name.'</td>
+                <td class="px-0">'.$val->category->name.'</td>
+                <td class="px-0">'.$val->stock.'</td>
+                <td class="px-0 text-dark fw-medium text-end">৳ '.$val->purchase_price.'/-</td>
+                <td class="px-0 text-dark fw-medium text-end">৳ '.$val->price.'/-</td>
+                <td class="px-0 text-dark fw-medium text-end">৳ '.$val->stock * $val->price.'/-</td>
+            </tr>';
+        }
+        return response($output);
+    }
 }

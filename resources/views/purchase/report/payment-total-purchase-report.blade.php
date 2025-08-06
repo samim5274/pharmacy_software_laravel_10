@@ -31,19 +31,23 @@
                     <!-- Filter Form -->
                     <form method="GET" action="{{url('/search-purchase-payment-report')}}" target="_blank" class="mb-4 p-3 rounded border bg-light">
                         <div class="row g-3 align-items-end">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="dtpStartDate" class="form-label">Start Date</label>
                                 <input type="date" id="dtpStartDate" name="dtpStartDate" class="form-control" required>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="dtpEndDate" class="form-label">End Date</label>
                                 <input type="date" id="dtpEndDate" name="dtpEndDate" class="form-control" required>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-8">
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="bi bi-search me-1"></i> Filter
                                     </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-grid gap-2">
                                     <button type="submit" name="print" value="1" class="btn btn-outline-secondary">
                                         <i class="fa-solid fa-print me-1"></i> Print
                                     </button>
