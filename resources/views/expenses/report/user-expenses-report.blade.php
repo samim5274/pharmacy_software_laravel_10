@@ -102,7 +102,7 @@
                                 @endforeach
 
                                 <tr class="fw-bold">
-                                    <td colspan="4">Total</td>
+                                    <td colspan="5">Total</td>
                                     <td class="text-end">৳{{ number_format($total, 2) }}/-</td>
                                     <td></td>
                                 </tr>

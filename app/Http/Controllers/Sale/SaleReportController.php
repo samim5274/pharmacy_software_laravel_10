@@ -203,6 +203,7 @@ class SaleReportController extends Controller
 
         $regs = $order->pluck('reg'); 
         $result = [];
+        $medicines = collect();
         foreach($regs as $reg){
             $carts = Cart::where('reg', $reg)->get();
             $medicineIds = Cart::pluck('medicine_id')->unique();            
@@ -210,7 +211,7 @@ class SaleReportController extends Controller
                 $result[$reg] = $carts;
                 $medicines = Product::whereIn('id', $medicineIds)->get();
             }           
-        }
+        }        
         // dd($result, $medicines);
         return view('sale.report.sale-profit-report', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat','result','medicines'));
     }
@@ -229,6 +230,7 @@ class SaleReportController extends Controller
 
         $regs = $order->pluck('reg'); 
         $result = [];
+        $medicines = collect();
         foreach($regs as $reg){
             $carts = Cart::where('reg', $reg)->get();
             $medicineIds = Cart::pluck('medicine_id')->unique();            
@@ -256,6 +258,7 @@ class SaleReportController extends Controller
 
         $regs = $order->pluck('reg'); 
         $result = [];
+        $medicines = collect();
         foreach($regs as $reg){
             $carts = Cart::where('reg', $reg)->get();
             $medicineIds = Cart::pluck('medicine_id')->unique();            
