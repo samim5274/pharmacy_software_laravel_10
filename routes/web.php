@@ -146,6 +146,8 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/add-new-category', [ExpensesController::class, 'addExCategory']);
     Route::post('/add-new-sub-category', [ExpensesController::class, 'addExSubCategory']);
     Route::get('/print-daily-expenses', [ExpensesController::class, 'printDailyExpenses']);
+    Route::get('/update-ex-category', [ExpensesController::class, 'updateExCat']);
+    Route::get('/update-ex-sub-category', [ExpensesController::class, 'updateExSubCat']);
 
     Route::get('/expenses-report', [ExpensesReportController::class, 'expensesReport'])->name('total.expenses.view');
     Route::get('/filter-expenses-report', [ExpensesReportController::class, 'filterExpensesReport']);

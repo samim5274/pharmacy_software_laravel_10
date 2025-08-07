@@ -30,13 +30,16 @@
                 <div class=" mt-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="m-0">Medicine Damage List</h4>
-                        <h5 class="m-0 text-primary">
-                            <a href="{{url('/print-damage-expired-list')}}" target="_blank"><i class="fa-solid fa-print"></i> Print </a>
-                        </h5>
-                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <i class="fa-solid fa-calendar-plus me-1"></i> Add
-                        </button>
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="{{ url('/print-damage-expired-list') }}" target="_blank" class="btn btn-outline-secondary">
+                                <i class="fa-solid fa-print me-1"></i> Print
+                            </a>
+                            <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <i class="fa-solid fa-calendar-plus me-1"></i> Add
+                            </button>
+                        </div>
                     </div>
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped text-center" id="printableTable">
                             <thead class="table-primary">
@@ -69,7 +72,26 @@
         </div> 
     </div>
   </div>
-    
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Damage Medicine List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="return confirm('Are you sure you want to damage this items?')">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>

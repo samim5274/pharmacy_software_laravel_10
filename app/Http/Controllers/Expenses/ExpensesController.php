@@ -121,4 +121,37 @@ class ExpensesController extends Controller
         $company = Company::all();
         return view('expenses.print.daily-expenses-print', compact('expenses','company','total'));
     }
+
+    public function updateExCat(Request $request){
+        $request->validate([
+            'txtCategroy' => 'required',
+            'txtId' => 'required',
+        ]);
+
+        $cat = $request->input('txtCategroy', '');
+        $Id = $request->input('txtId', '');
+
+        $data = Excategory::find($Id);
+        $data->name = $cat;
+        $data->update();
+        return redirect()->back()->with('success', 'Expenses category edited successfully.');
+    }
+
+    public function updateExSubCat(Request $request){
+        $request->validate([
+            'txtSubCategroy' => 'required',
+            'txtId' => 'required',
+            'cbxCategory' => 'required'
+        ]);
+
+        $subCat = $request->input('txtSubCategroy', '');
+        $Id = $request->input('txtId', '');
+        $catId = $request->input('cbxCategory', '');
+
+        $data = Subexcategory::find($Id);
+        $data->name = $subCat;
+        $data->ex_category_id = $catId;
+        $data->update();
+        return redirect()->back()->with('success', 'Expenses Sub-category edited successfully.');
+    }
 }
