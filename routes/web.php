@@ -135,6 +135,9 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/purchase-supplier-report', [PurchaseReportController::class, 'SupplierReport']);
     Route::get('/print/supplier/purchase/report', [PurchaseReportController::class, 'printSuppierReport']);
     Route::get('/search-supplier-purchase', [PurchaseReportController::class, 'findSupplierReport']);
+    Route::get('/purchase-user-report', [PurchaseReportController::class, 'userReport']);
+    Route::get('/search-user-purchase', [PurchaseReportController::class, 'findUserReport']);
+    Route::get('/print/user/purchase/report', [PurchaseReportController::class, 'printUserReport']);
 
     Route::get('/expenses', [ExpensesController::class, 'expenses'])->name('expenses.view');
     Route::get('/getSubCategory/{id}', [ExpensesController::class, 'getSubCategory']);

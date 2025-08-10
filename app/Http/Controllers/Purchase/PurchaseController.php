@@ -359,24 +359,26 @@ class PurchaseController extends Controller
     }
 
     public function paymentList(){
-        $order = Purchaseorder::where('status', 4)->paginate(20);
-        $total = Purchaseorder::where('status', 4)->sum('total');
-        $discount = Purchaseorder::where('status', 4)->sum('discount');
-        $payable = Purchaseorder::where('status', 4)->sum('payable');
-        $pay = Purchaseorder::where('status', 4)->sum('pay');
-        $due = Purchaseorder::where('status', 4)->sum('due');
-        $vat = Purchaseorder::where('status', 4)->sum('vat');
+        $date = Carbon::now()->format('Y-m-d');
+        $order = Purchaseorder::where('status', 4)->where('order_date', $date)->orderBy('id', 'desc')->paginate(20);
+        $total = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('total');
+        $discount = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('discount');
+        $payable = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('payable');
+        $pay = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('pay');
+        $due = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('due');
+        $vat = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('vat');
         return view('purchase.payment-list', compact('order','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }
 
     public function printPaymentList(){
-        $order = Purchaseorder::where('status', 4)->paginate(20);
-        $total = Purchaseorder::where('status', 4)->sum('total');
-        $discount = Purchaseorder::where('status', 4)->sum('discount');
-        $payable = Purchaseorder::where('status', 4)->sum('payable');
-        $pay = Purchaseorder::where('status', 4)->sum('pay');
-        $due = Purchaseorder::where('status', 4)->sum('due');
-        $vat = Purchaseorder::where('status', 4)->sum('vat');
+        $date = Carbon::now()->format('Y-m-d');
+        $order = Purchaseorder::where('status', 4)->where('order_date', $date)->paginate(20);
+        $total = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('total');
+        $discount = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('discount');
+        $payable = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('payable');
+        $pay = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('pay');
+        $due = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('due');
+        $vat = Purchaseorder::where('status', 4)->where('order_date', $date)->sum('vat');
         $company = Company::all();
         return view('purchase.print.print-payment-list', compact('order','company','total', 'discount', 'payable', 'payable', 'pay', 'due', 'vat'));
     }

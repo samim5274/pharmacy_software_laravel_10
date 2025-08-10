@@ -143,6 +143,7 @@
                     <li><a href="{{ url('/purchase-cancel-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Cancel</a></li>
                     <li><a href="{{ url('/purchase-return-report') }}"><i class="far fa-dot-circle me-2"></i>Purchase Return</a></li>
                     <li><a href="{{ url('/purchase-supplier-report') }}"><i class="far fa-dot-circle me-2"></i>Supplier Report</a></li>
+                    <li><a href="{{ url('/purchase-user-report') }}"><i class="far fa-dot-circle me-2"></i>User Report</a></li>
                 </ul>
             </li>
 
